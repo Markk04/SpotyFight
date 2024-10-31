@@ -875,7 +875,10 @@ PrefabInstance:
       value: JudgesTable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: -8700617353114198275, guid: b13f14e42ee235c49bf129f0dd3beb67, type: 3}
+    - {fileID: 2654713335656134247, guid: b13f14e42ee235c49bf129f0dd3beb67, type: 3}
+    - {fileID: 65702495048144492, guid: b13f14e42ee235c49bf129f0dd3beb67, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b13f14e42ee235c49bf129f0dd3beb67, type: 3}
@@ -1140,7 +1143,9 @@ PrefabInstance:
       value: BigScreen
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: -8700617353114198275, guid: 418a57eaabdb8dc4a8da027a94465a6d, type: 3}
+    - {fileID: 65702495048144492, guid: 418a57eaabdb8dc4a8da027a94465a6d, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 418a57eaabdb8dc4a8da027a94465a6d, type: 3}
