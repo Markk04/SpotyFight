@@ -4,15 +4,47 @@ using UnityEngine;
 
 public class HitAnimation : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private Collider[] animationColliders;  // Array to store colliders with the "Animation" tag.
+    private Animator animator;              // Reference to the Animator component.
+
+    // Name of the animation trigger or bool parameter
+    public string animationTriggerName = "HitTrigger";
+
     void Start()
     {
-        
+        // Find all objects with the "Animation" tag and get their colliders.
+        GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag("Animation");
+        animationColliders = new Collider[objectsWithTag.Length];
+
+        for (int i = 0; i < objectsWithTag.Length; i++)
+        {
+            animationColliders[i] = objectsWithTag[i].GetComponent<Collider>();
+        }
+
+        // Get the Animator component on this GameObject
+        // animator = GetComponent<Animator>();
+
+        if (animator == null)
+        {
+            Debug.LogWarning("No Animator component found on " + gameObject.name);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter(Collision collision)
     {
-        
+        // Check if the collided object is one of the animation colliders
+        foreach (Collider col in animationColliders)
+        {
+            if (collision.collider == col)
+            {
+                // Trigger the animation if an animator is present
+                if (animator != null)
+                {
+                    //animator.SetTrigger(animationTriggerName);
+                    Debug.Log("Playing animation on collision with: " + collision.gameObject.name);
+                }
+                break;  // Exit the loop once the matching collider is found
+            }
+        }
     }
 }
