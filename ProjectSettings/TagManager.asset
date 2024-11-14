@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Stop
+  - ScoreManagement
+  - Spectator
   layers:
   - Default
   - TransparentFX
