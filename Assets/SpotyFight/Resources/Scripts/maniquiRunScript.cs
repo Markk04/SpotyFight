@@ -8,11 +8,11 @@ public class ManiquiRunScript : MonoBehaviour
     private bool isJumping = false; // Indica si se está realizando el salto
     private float jumpSpeed = 15f; // Velocidad de movimiento hacia arriba durante el salto
     private float jumpDelay = 1.25f; // Retardo antes de comenzar el salto
-    private float attractionDelay = 0.7f;
     private Rigidbody rb; // Referencia al Rigidbody
 
     public GameObject[] attractionTargets; // Array de objetos a los que se puede atraer
-    public float attractionSpeed = 5f; // Velocidad de atracción
+    private float attractionSpeed = 17f; // Velocidad de atracción
+    private float attractionDelay = 0.7f;
     private GameObject target; // El objetivo al que el muñeco se va a mover
 
     void Start()
@@ -103,6 +103,18 @@ public class ManiquiRunScript : MonoBehaviour
 
             // Iniciar la atracción aleatoria
             Invoke("StartAttraction", attractionDelay);
+        }
+        // Verifica si el trigger tiene el tag "Fall"
+        if (other.CompareTag("attractionTarget"))
+        {
+            attractionSpeed = 0f; // Detener el movimiento estableciendo la velocidad a 0
+            canMove = false;
+
+            // Hacer la animación con trigger "falling" y mover hacia arriba
+            if (animator != null)
+            {
+                animator.SetTrigger("levanta");
+            }
         }
     }
 
