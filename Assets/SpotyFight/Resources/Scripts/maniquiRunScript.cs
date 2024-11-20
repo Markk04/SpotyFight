@@ -74,6 +74,18 @@ public class ManiquiRunScript : MonoBehaviour
                 Invoke("StartJumping", jumpDelay); // Iniciar el salto después del retardo
             }
         }
+        // Verifica si el trigger tiene el tag "Fall"
+        if (other.CompareTag("Fall"))
+        {
+            jumpSpeed = 0f; // Detener el movimiento estableciendo la velocidad a 0
+            canMove = false;
+
+            // Hacer la animación con trigger "salta" y mover hacia arriba
+            if (animator != null)
+            {
+                animator.SetTrigger("falling");
+            }
+        }
     }
 
     private void StartJumping()
