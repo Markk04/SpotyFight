@@ -6,9 +6,14 @@ public class ManiquiRunScript : MonoBehaviour
     private Animator animator; // Referencia al componente Animator
     private bool canMove = false; // Indica si el movimiento puede comenzar
     private bool isJumping = false; // Indica si se está realizando el salto
-    private float jumpSpeed = 10f; // Velocidad de movimiento hacia arriba durante el salto
+    private float jumpSpeed = 15f; // Velocidad de movimiento hacia arriba durante el salto
     private float jumpDelay = 1.25f; // Retardo antes de comenzar el salto
+    private float attractionDelay = 0.7f;
     private Rigidbody rb; // Referencia al Rigidbody
+
+    public GameObject[] attractionTargets; // Array de objetos a los que se puede atraer
+    public float attractionSpeed = 5f; // Velocidad de atracción
+    private GameObject target; // El objetivo al que el muñeco se va a mover
 
     void Start()
     {
@@ -25,12 +30,15 @@ public class ManiquiRunScript : MonoBehaviour
         {
             rb.useGravity = true; // Asegurarse de que la gravedad esté habilitada al inicio
         }
-        
+
         // Verificar si el Animator no es nulo y activar la animación con un trigger
         if (animator != null)
         {
             animator.SetTrigger("corre"); // Asume que el trigger de la animación se llama "corre"
         }
+
+        // Asignar automáticamente los objetos con el tag "attractionTarget" al array attractionTargets
+        attractionTargets = GameObject.FindGameObjectsWithTag("attractionTarget");
     }
 
     void Update()
@@ -56,6 +64,13 @@ public class ManiquiRunScript : MonoBehaviour
         {
             transform.Translate(Vector3.up * jumpSpeed * Time.deltaTime);
         }
+
+        // Si hay un objetivo de atracción, mover al muñeco hacia él
+        if (target != null)
+        {
+            // Mover el muñeco hacia el objetivo de manera continua
+            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, attractionSpeed * Time.deltaTime);
+        }
     }
 
     // Este método se ejecuta cuando entra en un trigger
@@ -80,11 +95,14 @@ public class ManiquiRunScript : MonoBehaviour
             jumpSpeed = 0f; // Detener el movimiento estableciendo la velocidad a 0
             canMove = false;
 
-            // Hacer la animación con trigger "salta" y mover hacia arriba
+            // Hacer la animación con trigger "falling" y mover hacia arriba
             if (animator != null)
             {
                 animator.SetTrigger("falling");
             }
+
+            // Iniciar la atracción aleatoria
+            Invoke("StartAttraction", attractionDelay);
         }
     }
 
@@ -95,5 +113,14 @@ public class ManiquiRunScript : MonoBehaviour
             rb.useGravity = false; // Desactivar la gravedad para permitir que el personaje suba indefinidamente
         }
         isJumping = true; // Permitir el movimiento hacia arriba
+    }
+
+    private void StartAttraction()
+    {
+        // Seleccionar un objetivo aleatorio del array de targets
+        if (attractionTargets.Length > 0)
+        {
+            target = attractionTargets[Random.Range(0, attractionTargets.Length)];
+        }
     }
 }
