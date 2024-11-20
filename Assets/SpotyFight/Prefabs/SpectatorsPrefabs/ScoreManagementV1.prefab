@@ -34335,7 +34335,7 @@ SkinnedMeshRenderer:
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
-  m_LightProbeUsage: 0
+  m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 3
   m_RayTraceProcedural: 0
@@ -101163,6 +101163,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 662a5ad5644dbc4428003453eb91fde0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerScore: 0
+  spectators: []
+  scoreThreshold: 1
 --- !u!114 &239239428808427426
 MonoBehaviour:
   m_ObjectHideFlags: 0
