@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PushBack : MonoBehaviour
 {
-    public float jumpForce = 100f; // Adjust this to control how hard the mannequin "jumps" on hit.
+    public float jumpForce = 200f; // Adjust this to control how hard the mannequin "jumps" on hit.
     private Rigidbody mannequinRb;  // Rigidbody of the mannequin.
     private Collider mannequinCollider;  // Collider of the mannequin.
 

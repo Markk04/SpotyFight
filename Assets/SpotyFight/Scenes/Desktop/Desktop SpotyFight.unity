@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 310169904}
   - component: {fileID: 310169905}
   m_Layer: 0
-  m_Name: AnimationRightRips (4)
+  m_Name: AnimationFace
   m_TagString: Animation
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -288,8 +288,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4557014908774623722, guid: f612dc1502e04f3488cfa02509fbd225, type: 3}
+      propertyPath: m_Height
+      value: 4.9304776
+      objectReference: {fileID: 0}
+    - target: {fileID: 4557014908774623722, guid: f612dc1502e04f3488cfa02509fbd225, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4557014908774623722, guid: f612dc1502e04f3488cfa02509fbd225, type: 3}
+      propertyPath: m_Center.y
+      value: 2.5847614
       objectReference: {fileID: 0}
     - target: {fileID: 4557014908774623722, guid: f612dc1502e04f3488cfa02509fbd225, type: 3}
       propertyPath: m_ProvidesContacts
@@ -305,7 +313,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7592614508835735006, guid: f612dc1502e04f3488cfa02509fbd225, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.067808
+      value: -7.078
       objectReference: {fileID: 0}
     - target: {fileID: 7592614508835735006, guid: f612dc1502e04f3488cfa02509fbd225, type: 3}
       propertyPath: m_LocalPosition.z
@@ -341,11 +349,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8455591729926716199, guid: f612dc1502e04f3488cfa02509fbd225, type: 3}
       propertyPath: jumpForce
-      value: 100
+      value: 1200
       objectReference: {fileID: 0}
     - target: {fileID: 8455591729926716199, guid: f612dc1502e04f3488cfa02509fbd225, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8455591729926716199, guid: f612dc1502e04f3488cfa02509fbd225, type: 3}
+      propertyPath: enablePushback
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8512560253813120791, guid: f612dc1502e04f3488cfa02509fbd225, type: 3}
+      propertyPath: m_Mass
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -355,11 +371,11 @@ PrefabInstance:
       addedObject: {fileID: 456857017}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7067750935527808868, guid: f612dc1502e04f3488cfa02509fbd225, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1992139573}
+      insertIndex: 2
+      addedObject: {fileID: 1992139579}
     - targetCorrespondingSourceObject: {fileID: 7067750935527808868, guid: f612dc1502e04f3488cfa02509fbd225, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1992139574}
+      addedObject: {fileID: 1992139578}
   m_SourcePrefab: {fileID: 100100000, guid: f612dc1502e04f3488cfa02509fbd225, type: 3}
 --- !u!1 &773769905
 GameObject:
@@ -372,7 +388,7 @@ GameObject:
   - component: {fileID: 773769906}
   - component: {fileID: 773769907}
   m_Layer: 0
-  m_Name: AnimationRightRips
+  m_Name: AnimationLeftRips
   m_TagString: Animation
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -427,7 +443,7 @@ GameObject:
   - component: {fileID: 1196042347}
   - component: {fileID: 1196042348}
   m_Layer: 0
-  m_Name: AnimationRightRips (6)
+  m_Name: AnimationLeftHead
   m_TagString: Animation
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -482,7 +498,7 @@ GameObject:
   - component: {fileID: 1196492859}
   - component: {fileID: 1196492860}
   m_Layer: 0
-  m_Name: AnimationRightRips (7)
+  m_Name: AnimationRightHead
   m_TagString: Animation
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -537,7 +553,7 @@ GameObject:
   - component: {fileID: 1262252325}
   - component: {fileID: 1262252326}
   m_Layer: 0
-  m_Name: AnimationRightRips (2)
+  m_Name: AnimationChest
   m_TagString: Animation
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -590,7 +606,7 @@ GameObject:
   - component: {fileID: 1570970499}
   - component: {fileID: 1570970500}
   m_Layer: 0
-  m_Name: AnimationRightRips (3)
+  m_Name: AnimationBack
   m_TagString: Animation
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -643,7 +659,7 @@ GameObject:
   - component: {fileID: 1633169319}
   - component: {fileID: 1633169320}
   m_Layer: 0
-  m_Name: AnimationRightRips (5)
+  m_Name: AnimationBackHead
   m_TagString: Animation
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -698,7 +714,7 @@ GameObject:
   - component: {fileID: 1807303419}
   - component: {fileID: 1807303420}
   m_Layer: 0
-  m_Name: AnimationRightRips (1)
+  m_Name: AnimationRightRips
   m_TagString: Animation
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -747,7 +763,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7592614508835735006, guid: f612dc1502e04f3488cfa02509fbd225, type: 3}
   m_PrefabInstance: {fileID: 539464014}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &1992139573
+--- !u!65 &1992139578
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -766,9 +782,9 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.7728538, y: 0.98582107, z: 1.1189947}
-  m_Center: {x: -0.0019157429, y: 0.56065476, z: 0.07958144}
---- !u!114 &1992139574
+  m_Size: {x: 1, y: 2.0912838, z: 1}
+  m_Center: {x: 0, y: 1.1191479, z: 0}
+--- !u!114 &1992139579
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163581,7 +163597,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1906938092331753465, guid: 3e84382cc3999304a81e990594338239, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.4
+      value: -1.4377017
       objectReference: {fileID: 0}
     - target: {fileID: 1906938092331753465, guid: 3e84382cc3999304a81e990594338239, type: 3}
       propertyPath: m_LocalPosition.y
@@ -163589,23 +163605,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1906938092331753465, guid: 3e84382cc3999304a81e990594338239, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.64
+      value: 0.7730922
       objectReference: {fileID: 0}
     - target: {fileID: 1906938092331753465, guid: 3e84382cc3999304a81e990594338239, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9996929
+      value: 0.29630724
       objectReference: {fileID: 0}
     - target: {fileID: 1906938092331753465, guid: 3e84382cc3999304a81e990594338239, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1906938092331753465, guid: 3e84382cc3999304a81e990594338239, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.02478112
+      value: 0.95509267
       objectReference: {fileID: 0}
     - target: {fileID: 1906938092331753465, guid: 3e84382cc3999304a81e990594338239, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1906938092331753465, guid: 3e84382cc3999304a81e990594338239, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -163613,7 +163629,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1906938092331753465, guid: 3e84382cc3999304a81e990594338239, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 2.84
+      value: 145.528
       objectReference: {fileID: 0}
     - target: {fileID: 1906938092331753465, guid: 3e84382cc3999304a81e990594338239, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
