@@ -6,7 +6,7 @@ public class ManiquiRunScript : MonoBehaviour
     private Animator animator; // Referencia al componente Animator
     private bool canMove = false; // Indica si el movimiento puede comenzar
     private bool isJumping = false; // Indica si se está realizando el salto
-    private float jumpSpeed = 5f; // Velocidad de movimiento hacia arriba durante el salto
+    private float jumpSpeed = 10f; // Velocidad de movimiento hacia arriba durante el salto
     private float jumpDelay = 1.25f; // Retardo antes de comenzar el salto
     private Rigidbody rb; // Referencia al Rigidbody
 
