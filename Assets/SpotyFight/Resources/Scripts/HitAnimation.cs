@@ -22,6 +22,15 @@ public class HitAnimation : MonoBehaviour
             animationColliders[i] = objectsWithTag[i].GetComponent<Collider>();
         }
 
+        // Log all collider names found with the "Animation" tag
+        foreach (Collider col in animationColliders)
+        {
+            if (col != null)
+            {
+                Debug.Log("Collider with the 'Animation' tag: " + col.name);
+            }
+        }
+
         // Get the Animator component on this GameObject
         animator = GetComponent<Animator>();
 
@@ -46,10 +55,10 @@ public class HitAnimation : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        // Log a message whenever a collision occurs
-        Debug.Log(gameObject.name + " collided with: " + collision.gameObject.name);
-
-        // Log the details of the collider being touched
+        // Log the name of the collider the mannequin is touching
+        Debug.Log("Mannequin touched collider: " + collision.collider.name);
+        
+        // Log additional details about the touched collider
         Collider colliderTouched = collision.collider;
         if (colliderTouched != null)
         {
@@ -72,28 +81,4 @@ public class HitAnimation : MonoBehaviour
         }
     }
 
-    // Add this method to log when the trigger is touched
-    private void OnTriggerEnter(Collider other)
-    {
-        // Log the details of the collider being touched
-        if (other != null)
-        {
-            Debug.Log("Touched trigger collider: " + other.name + " on object: " + other.gameObject.name);
-        }
-
-        // Check if the entered trigger is one of the animation colliders
-        foreach (Collider col in animationColliders)
-        {
-            if (other == col)
-            {
-                // Trigger the animation if an animator is present
-                if (animator != null)
-                {
-                    animator.SetTrigger(animationTriggerName);  // Play the animation on trigger
-                    Debug.Log("Trigger collision, playing animation with: " + other.gameObject.name);
-                }
-                break;  // Exit the loop once the matching collider is found
-            }
-        }
-    }
 }
