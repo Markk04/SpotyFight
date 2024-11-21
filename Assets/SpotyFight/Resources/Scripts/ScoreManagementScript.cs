@@ -9,6 +9,24 @@ public class ScoreManagementScript : MonoBehaviour
     private GameObject[] spectators; // Lista de objetos con el tag "Spectator"
     public int scoreThreshold = 10; // Puntaje necesario para mostrar un espectador
     private int currentThresholdIndex = 0; // Índice para saber qué espectador debe aparecer
+    private Color[] skinTones = new Color[]
+        {
+            new Color(0.9f, 0.7f, 0.5f), // Tonalidad clara (tono de piel muy clara)
+            new Color(0.8f, 0.6f, 0.4f), // Tonalidad clara
+            new Color(0.7f, 0.5f, 0.3f), // Tonalidad media-clara
+            new Color(0.6f, 0.4f, 0.2f), // Tonalidad media
+            new Color(0.5f, 0.3f, 0.1f), // Tonalidad oscura
+            new Color(0.4f, 0.2f, 0.1f)  // Tonalidad muy oscura (tono de piel muy oscuro)
+        };
+     private Color[] hairColor = new Color[]
+        {
+            new Color(0.85f, 0.35f, 0.18f), // Pelirrojo (rojo intenso)
+            new Color(0.9f, 0.75f, 0.45f), // Rubio claro (rubio muy claro)
+            new Color(0.6f, 0.5f, 0.4f), // Rubio oscuro (rubio más oscuro, con tono marrón)
+            new Color(0.1f, 0.1f, 0.1f), // Negro (cabello negro)
+            new Color(0.35f, 0.25f, 0.2f), // Moreno claro (marrón claro)
+            new Color(0.2f, 0.1f, 0.05f), // Moreno oscuro (marrón muy oscuro)
+        };
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +40,8 @@ public class ScoreManagementScript : MonoBehaviour
         // Hacer invisibles todos los espectadores al inicio
         foreach (var spectator in spectators)
         {
-            spectator.SetActive(false);
+            OtorgarColores(spectator); // Asignar color aleatorio a cada espectador
+            spectator.SetActive(false); // Desactivar los espectadores al inicio
         }
         // Llamamos a la función para actualizar la visibilidad de los espectadores al inicio
         UpdateSpectatorsVisibility();
@@ -32,9 +51,10 @@ public class ScoreManagementScript : MonoBehaviour
     void Update()
     {
         // Llamar para asegurarse de que los espectadores se actualicen cuando el puntaje cambie
-        if(playerScore!=playerScoreAntes){
+        if (playerScore != playerScoreAntes)
+        {
             UpdateSpectatorsVisibility();
-            playerScoreAntes=playerScore;
+            playerScoreAntes = playerScore;
         }
     }
 
@@ -69,7 +89,7 @@ public class ScoreManagementScript : MonoBehaviour
         }
     }
 
- //Barreja una llista de manera al random
+    // Baraja una lista de manera aleatoria
     void Mezclar(GameObject[] array)
     {
         int n = array.Length;
@@ -82,4 +102,24 @@ public class ScoreManagementScript : MonoBehaviour
         }
     }
 
+    // Método para otorgar un color aleatorio a los materiales del espectador según su shader
+    void OtorgarColores(GameObject spectator)
+    {
+        // Obtener el componente Renderer del espectador
+        Renderer skinnedrenderer = spectator.GetComponentInChildren<SkinnedMeshRenderer>();
+
+        // Verificar si el componente Renderer existe
+        if (skinnedrenderer != null)
+        {
+            // Obtener todos los materiales del Renderer
+            Material[] materials = skinnedrenderer.materials;
+            materials[0].color = skinTones[Random.Range(0, skinTones.Length)];
+            materials[1].color = new Color(Random.value, Random.value, Random.value);
+            materials[2].color = hairColor[Random.Range(0, hairColor.Length)];
+        }
+        else
+        {
+            Debug.LogWarning("El espectador " + spectator.name + " no tiene un componente Renderer.");
+        }
+    }
 }
