@@ -34,7 +34,7 @@ public class ManiquiRunScript : MonoBehaviour
         // Verificar si el Animator no es nulo y activar la animación con un trigger
         if (animator != null)
         {
-            animator.SetTrigger("corre"); // Asume que el trigger de la animación se llama "corre"
+            animator.SetTrigger("corre");
         }
 
         // Asignar automáticamente los objetos con el tag "attractionTarget" al array attractionTargets
@@ -94,11 +94,13 @@ public class ManiquiRunScript : MonoBehaviour
         {
             jumpSpeed = 0f; // Detener el movimiento estableciendo la velocidad a 0
             canMove = false;
+            Debug.Log("salta");
 
-            // Hacer la animación con trigger "falling" y mover hacia arriba
+            // Hacer la animación con trigger "falling" y mover hacia abajo
             if (animator != null)
             {
                 animator.SetTrigger("falling");
+                Debug.Log("saltando");
             }
 
             // Iniciar la atracción aleatoria
