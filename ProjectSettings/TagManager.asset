@@ -7,6 +7,8 @@ TagManager:
   - Stop
   - ScoreManagement
   - Spectator
+  - Fall
+  - attractionTarget
   layers:
   - Default
   - TransparentFX
