@@ -576,6 +576,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 239239428808427426, guid: 72ed2895008ad254487200fb15e4b2ef, type: 3}
+      propertyPath: animationTrigger.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4697185591722720905, guid: 72ed2895008ad254487200fb15e4b2ef, type: 3}
       propertyPath: m_Name
       value: ScoreManagementV1

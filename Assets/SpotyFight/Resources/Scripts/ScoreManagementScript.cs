@@ -24,8 +24,6 @@ public class ScoreManagementScript : MonoBehaviour
         {
             spectator.SetActive(false);
         }
-
-
         // Llamamos a la función para actualizar la visibilidad de los espectadores al inicio
         UpdateSpectatorsVisibility();
     }
@@ -38,7 +36,6 @@ public class ScoreManagementScript : MonoBehaviour
             UpdateSpectatorsVisibility();
             playerScoreAntes=playerScore;
         }
-        
     }
 
     // Método para agregar puntos
