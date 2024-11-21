@@ -4,11 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Hands
   - Stop
   - ScoreManagement
   - Spectator
   - Fall
   - attractionTarget
+  - Animation
   layers:
   - Default
   - TransparentFX
