@@ -16,6 +16,10 @@ public class ManiquiRunScript : MonoBehaviour
     private float attractionDelay = 0.7f;
     private GameObject target; // El objetivo al que el muñeco se va a mover
 
+    private GameObject maniquiWithRigidBody;
+
+    private GameObject sightTarget;
+
     void Start()
     {
         // Obtener el componente Animator del objeto hijo "Armature"
@@ -40,6 +44,12 @@ public class ManiquiRunScript : MonoBehaviour
 
         // Asignar automáticamente los objetos con el tag "attractionTarget" al array attractionTargets
         attractionTargets = GameObject.FindGameObjectsWithTag("attractionTarget");
+
+        maniquiWithRigidBody = GameObject.FindGameObjectWithTag("maniquiWithRigidBody");
+        maniquiWithRigidBody.SetActive(false);
+
+        sightTarget = GameObject.FindGameObjectWithTag("sightTarget");
+
     }
 
     void Update()
@@ -53,6 +63,22 @@ public class ManiquiRunScript : MonoBehaviour
         {
             canMove = false;
         }
+
+        // Verificar si la animación "quietoParao" está en ejecución
+        if (animator != null && animator.GetCurrentAnimatorStateInfo(0).IsName("quietoParao"))
+    {
+        Debug.Log("El GameObject está en la animación 'quietoParao'.");
+
+        // Sincronizar la posición de 'maniquiWithRigidBody' con la posición del objeto actual
+        if (maniquiWithRigidBody != null)
+        {
+            maniquiWithRigidBody.transform.position = transform.position;
+            maniquiWithRigidBody.SetActive(true);
+        }
+
+        // Desactivar el GameObject que tiene el script (esto desactiva todo el objeto)
+        gameObject.SetActive(false); // Desactiva este GameObject
+    }
 
         // Movimiento hacia adelante solo si se permite
         if (canMove)
@@ -72,6 +98,7 @@ public class ManiquiRunScript : MonoBehaviour
             // Mover el muñeco hacia el objetivo de manera continua
             transform.position = Vector3.MoveTowards(transform.position, target.transform.position, attractionSpeed * Time.deltaTime);
         }
+
     }
 
     // Este método se ejecuta cuando entra en un trigger

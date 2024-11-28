@@ -11,6 +11,8 @@ TagManager:
   - Fall
   - attractionTarget
   - Animation
+  - maniquiWithRigidBody
+  - sightTarget
   layers:
   - Default
   - TransparentFX
