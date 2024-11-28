@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ManiquiRunScript : MonoBehaviour
@@ -108,17 +109,25 @@ public class ManiquiRunScript : MonoBehaviour
         }
         // Verifica si el trigger tiene el tag "Fall"
         if (other.CompareTag("attractionTarget"))
-        {
-            attractionSpeed = 0f; // Detener el movimiento estableciendo la velocidad a 0
-            canMove = false;
-
-            // Hacer la animación con trigger "falling" y mover hacia arriba
-            if (animator != null)
             {
-                animator.SetTrigger("levanta");
+                rb.useGravity = true;
+                attractionSpeed = 0f;
+                canMove = false;
+
+                // Desactivar el BoxCollider de 'other'
+                BoxCollider boxCollider = other.GetComponent<BoxCollider>();
+                if (boxCollider != null)
+                {
+                    boxCollider.enabled = false;  // Desactiva el BoxCollider
+                }
+
+                // Hacer la animación con trigger "levanta" y mover hacia arriba
+                if (animator != null)
+                {
+                    animator.SetTrigger("levanta");
+                }
             }
-        }
-    }
+            }
 
     private void StartJumping()
     {
