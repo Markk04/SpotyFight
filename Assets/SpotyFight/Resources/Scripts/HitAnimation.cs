@@ -53,32 +53,32 @@ public class HitAnimation : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        // Log the name of the collider the mannequin is touching
-        Debug.Log("Mannequin touched collider: " + collision.collider.name);
-        
-        // Log additional details about the touched collider
-        Collider colliderTouched = collision.collider;
-        if (colliderTouched != null)
-        {
-            Debug.Log("Touched collider: " + colliderTouched.name + " on object: " + colliderTouched.gameObject.name);
-        }
-
-        // Check if the collided object is one of the animation colliders
-        foreach (Collider col in animationColliders)
-        {
-            if (collision.collider == col)
-            {
-                // Trigger the animation if an animator is present
-                if (animator != null)
-                {
-                    animator.SetTrigger(animationTriggerName);  // Play the animation on collision
-                    Debug.Log("Playing animation on collision with: " + collision.gameObject.name);
-                }
-                break;  // Exit the loop once the matching collider is found
-            }
-        }
-    }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    // Log the name of the collider the mannequin is touching
+    //    Debug.Log("Mannequin touched collider: " + collision.collider.name);
+    //    
+    //    // Log additional details about the touched collider
+    //    Collider colliderTouched = collision.collider;
+    //    if (colliderTouched != null)
+    //    {
+    //        Debug.Log("Touched collider: " + colliderTouched.name + " on object: " + colliderTouched.gameObject.name);
+    //    }
+//
+    //    // Check if the collided object is one of the animation colliders
+    //    foreach (Collider col in animationColliders)
+    //    {
+    //        if (collision.collider == col)
+    //        {
+    //            // Trigger the animation if an animator is present
+    //            if (animator != null)
+    //            {
+    //                animator.SetTrigger(animationTriggerName);  // Play the animation on collision
+    //                Debug.Log("Playing animation on collision with: " + collision.gameObject.name);
+    //            }
+    //            break;  // Exit the loop once the matching collider is found
+    //        }
+    //    }
+    //}
 
 }
