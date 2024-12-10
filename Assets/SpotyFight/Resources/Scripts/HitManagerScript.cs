@@ -7,7 +7,11 @@ public class HitScript : MonoBehaviour
     private GameObject[] childrenArray;
     private int lifes; // La quantitat de hosties que li pots cardar
     public Color mainColor;
-    private int[] ids;
+    private List<int> idsToHit;
+
+    // Lista de ids
+    public List<int> originalList = new List<int> { 0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23 };
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +25,9 @@ public class HitScript : MonoBehaviour
         }
 
         lifes=5;
+
+        idsToHit = GetRandomizedList(originalList);
+
         
         //OtorgarColores(0,new Color(0,0,100),true,10);
         //OtorgarColores(2,new Color(100,0,0),true,10);
@@ -50,7 +57,14 @@ public class HitScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (idsToHit.Count <= 0)
+        {
+            Debug.Log("A tomar por culo");
+        }
+        else
+        {
+            OtorgarColores(idsToHit[0], new Color(0, 100, 0), true, 10);
+        }
     }
 
     public void OtorgarColores(int id,Color color,bool enableEmiter,float emiter)
@@ -88,6 +102,41 @@ public class HitScript : MonoBehaviour
     {
         Debug.LogError("No se encontró un SkinnedMeshRenderer en el objeto.");
     }
+    }
+
+    // Método para obtener una lista aleatoria
+    List<int> GetRandomizedList(List<int> inputList)
+{
+    List<int> tempList = new List<int>(inputList); // Copia de la lista original
+    List<int> resultList = new List<int>();
+    int index = 0;
+    while (index < lifes)
+    {
+        // Elegir un índice aleatorio
+        int randomIndex = Random.Range(0, tempList.Count);
+
+        // Agregar el elemento a la nueva lista
+        resultList.Add(tempList[randomIndex]);
+
+        // Remover el elemento de la lista temporal
+        tempList.RemoveAt(randomIndex);
+        index++;
+    }
+
+    return resultList;
+}
+
+
+    public void isHitted(int id)
+    {
+        if (idsToHit.Count > 0 && id == idsToHit[0])
+        {
+            idsToHit.RemoveAt(0); // Elimina la posición 0
+        }
+        else
+        {
+            Debug.LogWarning("No hay IDs para eliminar o el ID no coincide.");
+        }
     }
 
 }

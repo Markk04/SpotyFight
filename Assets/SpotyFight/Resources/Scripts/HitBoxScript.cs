@@ -45,6 +45,7 @@ public class HitBoxScript : MonoBehaviour
         {
             // Llama al método OtorgarColores del HitScript
             hitScript.OtorgarColores(id, hitScript.mainColor, false, 0);
+            hitScript.isHitted(id);
         }
     }
 }

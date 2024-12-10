@@ -21,7 +21,7 @@ public class SpectatorAnimationScript : MonoBehaviour
         foreach (GameObject spectator in spectatorsList)
         {
             animationDelays[spectator] = Random.Range(0f, 3f); // Retraso inicial aleatorio entre 0 y 3 segundos
-            Debug.Log("Espectador encontrado: " + spectator.name + " - Retraso inicial: " + animationDelays[spectator]);
+            //Debug.Log("Espectador encontrado: " + spectator.name + " - Retraso inicial: " + animationDelays[spectator]);
         }
     }
 
