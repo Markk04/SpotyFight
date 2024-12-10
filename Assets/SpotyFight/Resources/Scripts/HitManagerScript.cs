@@ -7,6 +7,7 @@ public class HitScript : MonoBehaviour
     private GameObject[] childrenArray;
     private int lifes; // La quantitat de hosties que li pots cardar
     public Color mainColor;
+    private int[] ids;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,8 +20,31 @@ public class HitScript : MonoBehaviour
             OtorgarColores(i,mainColor,false,0);
         }
 
-        lifes=1;
-        OtorgarColores(12,new Color(0,0,100),true,10);
+        lifes=5;
+        
+        //OtorgarColores(0,new Color(0,0,100),true,10);
+        //OtorgarColores(2,new Color(100,0,0),true,10);
+        //OtorgarColores(3,new Color(0,0,100),true,10);
+        //OtorgarColores(4,new Color(0,100,0),true,10);
+        //OtorgarColores(5,new Color(100,0,0),true,10);
+        //OtorgarColores(6,new Color(0,0,100),true,10);
+        //OtorgarColores(7,new Color(0,100,0),true,10);
+        //OtorgarColores(8,new Color(100,0,0),true,10);
+        //OtorgarColores(9,new Color(0,0,100),true,10);
+        //OtorgarColores(10,new Color(0,0,100),true,10);
+        //OtorgarColores(11,new Color(0,100,0),true,10);
+        //OtorgarColores(12,new Color(100,0,0),true,10);
+        //OtorgarColores(13,new Color(0,0,100),true,10);
+        //OtorgarColores(14,new Color(0,100,0),true,10);
+        //OtorgarColores(15,new Color(100,0,0),true,10);
+        //OtorgarColores(16,new Color(0,0,100),true,10);
+        //OtorgarColores(17,new Color(0,100,0),true,10);
+        //OtorgarColores(18,new Color(100,0,0),true,10);
+        //OtorgarColores(19,new Color(0,0,100),true,10);
+        //OtorgarColores(20,new Color(0,100,0),true,10);
+        //OtorgarColores(21,new Color(100,0,0),true,10);
+        //OtorgarColores(22,new Color(0,0,100),true,10);
+
     }
 
     // Update is called once per frame
