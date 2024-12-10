@@ -8,6 +8,9 @@ public class HitScript : MonoBehaviour
     private int lifes; // La quantitat de hosties que li pots cardar
     public Color mainColor;
     private List<int> idsToHit;
+    private BoxCollider boxCollider;
+    private Rigidbody mannequinRb;  // Rigidbody of the mannequin.
+    
 
     // Lista de ids
     public List<int> originalList = new List<int> { 0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23 };
@@ -17,6 +20,8 @@ public class HitScript : MonoBehaviour
     {
         // Obtener el componente Renderer del espectador
         SkinnedMeshRenderer skinnedRenderer = gameObject.GetComponent<SkinnedMeshRenderer>();
+        boxCollider = GetComponentInParent<BoxCollider>();
+        mannequinRb = GetComponentInParent<Rigidbody>();
         // Obtener todos los materiales del Renderer
         Material[] materials = skinnedRenderer.materials;
         mainColor = materials[1].color;
@@ -60,6 +65,14 @@ public class HitScript : MonoBehaviour
         if (idsToHit.Count <= 0)
         {
             Debug.Log("A tomar por culo");
+            DisableChildObjectsWithTag("HitBoxColider");
+            // Incrementar la altura del BoxCollider
+            Vector3 newSize = boxCollider.size;
+            newSize.y += 1; // Incrementar altura (eje Y)
+            boxCollider.size = newSize;
+            //Acordarse del centro tambien sino no va
+            mannequinRb.useGravity = true;
+            mannequinRb.isKinematic = false;
         }
         else
         {
@@ -133,9 +146,23 @@ public class HitScript : MonoBehaviour
         {
             idsToHit.RemoveAt(0); // Elimina la posición 0
         }
-        else
+    }
+
+     void DisableChildObjectsWithTag(string tag)
+    {
+        // Obtiene todos los hijos del objeto actual
+        Transform[] childTransforms = GetComponentsInChildren<Transform>();
+
+        // Recorre todos los transform encontrados
+        foreach (Transform child in childTransforms)
         {
-            Debug.LogWarning("No hay IDs para eliminar o el ID no coincide.");
+            // Verifica si el hijo tiene el tag especificado
+            if (child.CompareTag(tag))
+            {
+                // Desactiva el GameObject del hijo
+                child.gameObject.SetActive(false);
+                Debug.Log($"Desactivado: {child.name}");
+            }
         }
     }
 
