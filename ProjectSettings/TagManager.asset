@@ -11,8 +11,13 @@ TagManager:
   - Fall
   - attractionTarget
   - Animation
+<<<<<<< HEAD
   - HitBoxColider
   - BoxColiderManager
+=======
+  - maniquiWithRigidBody
+  - sightTarget
+>>>>>>> Hugo-
   layers:
   - Default
   - TransparentFX

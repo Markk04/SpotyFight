@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ManiquiRunScript : MonoBehaviour
@@ -14,6 +15,10 @@ public class ManiquiRunScript : MonoBehaviour
     private float attractionSpeed = 17f; // Velocidad de atracción
     private float attractionDelay = 0.7f;
     private GameObject target; // El objetivo al que el muñeco se va a mover
+
+    private GameObject maniquiWithRigidBody;
+
+    private GameObject sightTarget;
 
     void Start()
     {
@@ -39,6 +44,12 @@ public class ManiquiRunScript : MonoBehaviour
 
         // Asignar automáticamente los objetos con el tag "attractionTarget" al array attractionTargets
         attractionTargets = GameObject.FindGameObjectsWithTag("attractionTarget");
+
+        maniquiWithRigidBody = GameObject.FindGameObjectWithTag("maniquiWithRigidBody");
+        maniquiWithRigidBody.SetActive(false);
+
+        sightTarget = GameObject.FindGameObjectWithTag("sightTarget");
+
     }
 
     void Update()
@@ -52,6 +63,22 @@ public class ManiquiRunScript : MonoBehaviour
         {
             canMove = false;
         }
+
+        // Verificar si la animación "quietoParao" está en ejecución
+        if (animator != null && animator.GetCurrentAnimatorStateInfo(0).IsName("quietoParao"))
+    {
+        Debug.Log("El GameObject está en la animación 'quietoParao'.");
+
+        // Sincronizar la posición de 'maniquiWithRigidBody' con la posición del objeto actual
+        if (maniquiWithRigidBody != null)
+        {
+            maniquiWithRigidBody.transform.position = transform.position;
+            maniquiWithRigidBody.SetActive(true);
+        }
+
+        // Desactivar el GameObject que tiene el script (esto desactiva todo el objeto)
+        gameObject.SetActive(false); // Desactiva este GameObject
+    }
 
         // Movimiento hacia adelante solo si se permite
         if (canMove)
@@ -71,6 +98,7 @@ public class ManiquiRunScript : MonoBehaviour
             // Mover el muñeco hacia el objetivo de manera continua
             transform.position = Vector3.MoveTowards(transform.position, target.transform.position, attractionSpeed * Time.deltaTime);
         }
+
     }
 
     // Este método se ejecuta cuando entra en un trigger
@@ -108,17 +136,25 @@ public class ManiquiRunScript : MonoBehaviour
         }
         // Verifica si el trigger tiene el tag "Fall"
         if (other.CompareTag("attractionTarget"))
-        {
-            attractionSpeed = 0f; // Detener el movimiento estableciendo la velocidad a 0
-            canMove = false;
-
-            // Hacer la animación con trigger "falling" y mover hacia arriba
-            if (animator != null)
             {
-                animator.SetTrigger("levanta");
+                rb.useGravity = true;
+                attractionSpeed = 0f;
+                canMove = false;
+
+                // Desactivar el BoxCollider de 'other'
+                BoxCollider boxCollider = other.GetComponent<BoxCollider>();
+                if (boxCollider != null)
+                {
+                    boxCollider.enabled = false;  // Desactiva el BoxCollider
+                }
+
+                // Hacer la animación con trigger "levanta" y mover hacia arriba
+                if (animator != null)
+                {
+                    animator.SetTrigger("levanta");
+                }
             }
-        }
-    }
+            }
 
     private void StartJumping()
     {
