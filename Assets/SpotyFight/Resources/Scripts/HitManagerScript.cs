@@ -57,6 +57,7 @@ public class HitScript : MonoBehaviour
         //OtorgarColores(20,new Color(0,100,0),true,10);
         //OtorgarColores(21,new Color(100,0,0),true,10);
         //OtorgarColores(22,new Color(0,0,100),true,10);
+        transform.LookAt(Vector3.zero);
 
         triggerFinalHit = true;
 
@@ -80,6 +81,7 @@ public class HitScript : MonoBehaviour
             mannequinRb.useGravity = true;
             mannequinRb.isKinematic = false;
             triggerFinalHit=false;
+            Invoke("DestroyMySelf",10);
         } else if (idsToHit.Count == 1){
             OtorgarColores(idsToHit[0], new Color(100, 0, 0), true, 10);
         }
@@ -174,6 +176,10 @@ public class HitScript : MonoBehaviour
                 Debug.Log($"Desactivado: {child.name}");
             }
         }
+    }
+
+    void DestroyMySelf(){
+        Destroy(transform.parent.gameObject);
     }
 
 }

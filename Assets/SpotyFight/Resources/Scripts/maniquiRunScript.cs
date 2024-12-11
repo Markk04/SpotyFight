@@ -10,7 +10,7 @@ public class ManiquiRunScript : MonoBehaviour
     private float jumpSpeed = 15f; // Velocidad de movimiento hacia arriba durante el salto
     private float jumpDelay = 1.25f; // Retardo antes de comenzar el salto
     private Rigidbody rb; // Referencia al Rigidbody
-
+    public GameObject maniquinPrefab; // Arrastra aquí tu prefab desde el inspector
     public GameObject[] attractionTargets; // Array de objetos a los que se puede atraer
     private float attractionSpeed = 17f; // Velocidad de atracción
     private float attractionDelay = 0.7f;
@@ -76,8 +76,11 @@ public class ManiquiRunScript : MonoBehaviour
             maniquiWithRigidBody.SetActive(true);
         }
 
+        //Crear el gameObject de manikin para golpiar
+        Instantiate(maniquinPrefab, gameObject.transform.position, Quaternion.identity);
+
         // Desactivar el GameObject que tiene el script (esto desactiva todo el objeto)
-        gameObject.SetActive(false); // Desactiva este GameObject
+        Destroy(gameObject);
     }
 
         // Movimiento hacia adelante solo si se permite
