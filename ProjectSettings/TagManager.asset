@@ -4,20 +4,15 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Hands
-  - Stop
+  - HitBoxColider
+  - Animation
+  - BoxColiderManager
   - ScoreManagement
   - Spectator
-  - Fall
+  - Hands
   - attractionTarget
-  - Animation
-<<<<<<< HEAD
-  - HitBoxColider
-  - BoxColiderManager
-=======
-  - maniquiWithRigidBody
-  - sightTarget
->>>>>>> Hugo-
+  - Stop
+  - Fall
   layers:
   - Default
   - TransparentFX
@@ -29,7 +24,7 @@ TagManager:
   - Grabbable
   - Hand
   - HandPlayer
-  - PP
+  - 
   - 
   - 
   - 
