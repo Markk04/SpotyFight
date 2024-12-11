@@ -10,10 +10,11 @@ public class HitScript : MonoBehaviour
     private List<int> idsToHit;
     private BoxCollider boxCollider;
     private Rigidbody mannequinRb;  // Rigidbody of the mannequin.
+    private bool triggerFinalHit;
     
 
     // Lista de ids
-    public List<int> originalList = new List<int> { 0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23 };
+    public List<int> originalList = new List<int> { 0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,17,18,19,20,21,22,23 }; // Falta el 16 que amb el desktop no arribo
 
     // Start is called before the first frame update
     void Start()
@@ -57,22 +58,30 @@ public class HitScript : MonoBehaviour
         //OtorgarColores(21,new Color(100,0,0),true,10);
         //OtorgarColores(22,new Color(0,0,100),true,10);
 
+        triggerFinalHit = true;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (idsToHit.Count <= 0)
+        if (idsToHit.Count <= 0 && triggerFinalHit)
         {
             Debug.Log("A tomar por culo");
-            DisableChildObjectsWithTag("HitBoxColider");
+            DisableChildObjectsWithTag("BoxColiderManager");
             // Incrementar la altura del BoxCollider
             Vector3 newSize = boxCollider.size;
-            newSize.y += 1; // Incrementar altura (eje Y)
+            newSize.y += 5f; // Incrementar altura (eje Y)
             boxCollider.size = newSize;
+            Vector3 newCenter = boxCollider.center;
+            newCenter.y += 2.5f;
+            boxCollider.center = newCenter;
             //Acordarse del centro tambien sino no va
             mannequinRb.useGravity = true;
             mannequinRb.isKinematic = false;
+            triggerFinalHit=false;
+        } else if (idsToHit.Count == 1){
+            OtorgarColores(idsToHit[0], new Color(100, 0, 0), true, 10);
         }
         else
         {
@@ -119,7 +128,7 @@ public class HitScript : MonoBehaviour
 
     // Método para obtener una lista aleatoria
     List<int> GetRandomizedList(List<int> inputList)
-{
+    {
     List<int> tempList = new List<int>(inputList); // Copia de la lista original
     List<int> resultList = new List<int>();
     int index = 0;
@@ -148,14 +157,15 @@ public class HitScript : MonoBehaviour
         }
     }
 
-     void DisableChildObjectsWithTag(string tag)
+    void DisableChildObjectsWithTag(string tag)
     {
         // Obtiene todos los hijos del objeto actual
-        Transform[] childTransforms = GetComponentsInChildren<Transform>();
+        Transform parent = transform.parent;
 
         // Recorre todos los transform encontrados
-        foreach (Transform child in childTransforms)
+        foreach (Transform child in parent)
         {
+            Debug.Log(child.tag);
             // Verifica si el hijo tiene el tag especificado
             if (child.CompareTag(tag))
             {

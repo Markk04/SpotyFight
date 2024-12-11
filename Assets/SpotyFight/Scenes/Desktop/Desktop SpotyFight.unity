@@ -172022,7 +172022,7 @@ GameObject:
   - component: {fileID: 2246172506787729291}
   m_Layer: 0
   m_Name: HitColliders
-  m_TagString: Untagged
+  m_TagString: BoxColiderManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -12,6 +12,7 @@ TagManager:
   - attractionTarget
   - Animation
   - HitBoxColider
+  - BoxColiderManager
   layers:
   - Default
   - TransparentFX
