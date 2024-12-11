@@ -109,12 +109,14 @@ public class ManiquiRunScript : MonoBehaviour
         {
             forwardSpeed = 0f; // Detener el movimiento estableciendo la velocidad a 0
             canMove = false;
+            Debug.Log("salta");
 
             // Hacer la animación con trigger "salta" y mover hacia arriba
             if (animator != null)
             {
                 animator.SetTrigger("salta"); // Asume que el trigger de la animación se llama "salta"
                 Invoke("StartJumping", jumpDelay); // Iniciar el salto después del retardo
+                Debug.Log("saltando");
             }
         }
         // Verifica si el trigger tiene el tag "Fall"
@@ -122,13 +124,13 @@ public class ManiquiRunScript : MonoBehaviour
         {
             jumpSpeed = 0f; // Detener el movimiento estableciendo la velocidad a 0
             canMove = false;
-            Debug.Log("salta");
+            
 
             // Hacer la animación con trigger "falling" y mover hacia abajo
             if (animator != null)
             {
                 animator.SetTrigger("falling");
-                Debug.Log("saltando");
+                
             }
 
             // Iniciar la atracción aleatoria
