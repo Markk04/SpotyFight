@@ -1352,6 +1352,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Auto Hand Player Container
       objectReference: {fileID: 0}
+    - target: {fileID: 301230551107954808, guid: 3e84382cc3999304a81e990594338239, type: 3}
+      propertyPath: m_TagString
+      value: jugador
+      objectReference: {fileID: 0}
     - target: {fileID: 470650907362390389, guid: 3e84382cc3999304a81e990594338239, type: 3}
       propertyPath: poseData.Array.data[0].localRotations.Array.data[0].w
       value: -0.017903473

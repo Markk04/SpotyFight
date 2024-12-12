@@ -13,6 +13,8 @@ TagManager:
   - attractionTarget
   - Stop
   - Fall
+  - jugador
+  - maniquiWithRigidBody
   layers:
   - Default
   - TransparentFX

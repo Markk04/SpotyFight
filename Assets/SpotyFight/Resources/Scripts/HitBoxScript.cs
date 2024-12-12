@@ -7,12 +7,18 @@ public class HitBoxScript : MonoBehaviour
     private Collider mannequinCollider;
     public int id;
 
+    public GameObject cartoonEffect;
+
     // Referencia al HitScript del "tío"
     private HitScript hitScript;
+
+    // Referencia al jugador (debe asignarse desde el inspector o buscarse)
+    private Transform player;
 
     void Start()
     {
         // Busca al "tío" del objeto actual
+        player = GameObject.FindGameObjectWithTag("jugador").transform;
         Transform parent = transform.parent;
         if (parent != null)
         {
@@ -45,7 +51,18 @@ public class HitBoxScript : MonoBehaviour
         {
             // Llama al método OtorgarColores del HitScript
             hitScript.OtorgarColores(id, hitScript.mainColor, false, 0);
-            hitScript.isHitted(id);
+            if(hitScript.isHitted(id)){
+                // Instancia el efecto
+                if (cartoonEffect != null && player != null)
+                {
+                    // Instancia el efecto con la rotación correcta
+                    Instantiate(cartoonEffect, transform.position, new Quaternion(0.0f,0.0f,0.0f,1));
+                }
+                else
+                {
+                    Debug.LogError("CartoonEffect o Player no están asignados.");
+                }
+            }
         }
     }
 }

@@ -8,7 +8,6 @@ public class ScoreManagementScript : MonoBehaviour
     private int playerScoreAntes;
     private GameObject[] spectators; // Lista de objetos con el tag "Spectator"
     public int scoreThreshold = 10; // Puntaje necesario para mostrar un espectador
-    private int currentThresholdIndex = 0; // Índice para saber qué espectador debe aparecer
     private Color[] skinTones = new Color[]
         {
             new Color(0.9f, 0.7f, 0.5f), // Tonalidad clara (tono de piel muy clara)

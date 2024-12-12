@@ -14,7 +14,7 @@ public class HitScript : MonoBehaviour
     
 
     // Lista de ids
-    public List<int> originalList = new List<int> { 0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,17,18,19,20,21,22,23 }; // Falta el 16 que amb el desktop no arribo
+    public List<int> originalList = new List<int> { 0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23 }; // Falta el 16 que amb el desktop no arribo
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +30,7 @@ public class HitScript : MonoBehaviour
             OtorgarColores(i,mainColor,false,0);
         }
 
-        lifes=5;
+        lifes=8;
 
         idsToHit = GetRandomizedList(originalList);
 
@@ -66,6 +66,9 @@ public class HitScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(idsToHit.Count >0){
+            Debug.Log(idsToHit[0]);
+        }
         if (idsToHit.Count <= 0 && triggerFinalHit)
         {
             Debug.Log("A tomar por culo");
@@ -87,7 +90,9 @@ public class HitScript : MonoBehaviour
         }
         else
         {
-            OtorgarColores(idsToHit[0], new Color(0, 100, 0), true, 10);
+            if(idsToHit.Count >0){
+                OtorgarColores(idsToHit[0], new Color(0, 100, 0), true, 10);
+            }
         }
     }
 
@@ -146,16 +151,18 @@ public class HitScript : MonoBehaviour
         tempList.RemoveAt(randomIndex);
         index++;
     }
-
     return resultList;
 }
 
 
-    public void isHitted(int id)
+    public bool isHitted(int id)
     {
         if (idsToHit.Count > 0 && id == idsToHit[0])
         {
             idsToHit.RemoveAt(0); // Elimina la posición 0
+            return true;
+        }else{
+            return false;
         }
     }
 
