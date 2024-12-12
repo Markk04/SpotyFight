@@ -795,7 +795,7 @@ PrefabInstance:
     - target: {fileID: 8853779403492433033, guid: 3cb1496fc5b3cad4e8732c35d66f8a2c, type: 3}
       propertyPath: maniquinPrefab
       value: 
-      objectReference: {fileID: 1457802514315242982, guid: 5071371d21dab71499688502a793103a, type: 3}
+      objectReference: {fileID: 1457802514315242982, guid: 41b3995d50738ba469a4aeba24fff8e8, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
