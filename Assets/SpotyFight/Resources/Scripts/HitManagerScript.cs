@@ -11,6 +11,7 @@ public class HitScript : MonoBehaviour
     private BoxCollider boxCollider;
     private Rigidbody mannequinRb;  // Rigidbody of the mannequin.
     private bool triggerFinalHit;
+    public GameObject maniquiRagdoll;
     
 
     // Lista de ids
@@ -30,7 +31,7 @@ public class HitScript : MonoBehaviour
             OtorgarColores(i,mainColor,false,0);
         }
 
-        lifes=8;
+        lifes=3;
 
         idsToHit = GetRandomizedList(originalList);
 
@@ -72,19 +73,21 @@ public class HitScript : MonoBehaviour
         if (idsToHit.Count <= 0 && triggerFinalHit)
         {
             Debug.Log("A tomar por culo");
-            DisableChildObjectsWithTag("BoxColiderManager");
-            // Incrementar la altura del BoxCollider
-            Vector3 newSize = boxCollider.size;
-            newSize.y += 5f; // Incrementar altura (eje Y)
-            boxCollider.size = newSize;
-            Vector3 newCenter = boxCollider.center;
-            newCenter.y += 2.5f;
-            boxCollider.center = newCenter;
-            //Acordarse del centro tambien sino no va
-            mannequinRb.useGravity = true;
-            mannequinRb.isKinematic = false;
-            triggerFinalHit=false;
-            Invoke("DestroyMySelf",10);
+            //DisableChildObjectsWithTag("BoxColiderManager");
+            //// Incrementar la altura del BoxCollider
+            //Vector3 newSize = boxCollider.size;
+            //newSize.y += 5f; // Incrementar altura (eje Y)
+            //boxCollider.size = newSize;
+            //Vector3 newCenter = boxCollider.center;
+            //newCenter.y += 2.5f;
+            //boxCollider.center = newCenter;
+            ////Acordarse del centro tambien sino no va
+            //mannequinRb.useGravity = true;
+            //mannequinRb.isKinematic = false;
+            //triggerFinalHit=false;
+            //Invoke("DestroyMySelf",10);
+            Instantiate(maniquiRagdoll, gameObject.transform.position, Quaternion.identity);
+            DestroyMySelf();
         } else if (idsToHit.Count == 1){
             OtorgarColores(idsToHit[0], new Color(100, 0, 0), true, 10);
         }
