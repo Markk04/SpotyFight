@@ -11,7 +11,6 @@ public class ManiquiRunScript : MonoBehaviour
     private float jumpDelay = 1.25f; // Retardo antes de comenzar el salto
     private Rigidbody rb; // Referencia al Rigidbody
     public GameObject maniquinPrefab; // Arrastra aquí tu prefab desde el inspector
-    public GameObject[] attractionTargets; // Array de objetos a los que se puede atraer
     private float attractionSpeed = 17f; // Velocidad de atracción
     private float attractionDelay = 0.7f;
     private GameObject target; // El objetivo al que el muñeco se va a mover
@@ -168,12 +167,8 @@ public class ManiquiRunScript : MonoBehaviour
         isJumping = true; // Permitir el movimiento hacia arriba
     }
 
-    private void StartAttraction()
+    public void setTarget(GameObject target)
     {
-        // Seleccionar un objetivo aleatorio del array de targets
-        if (attractionTargets.Length > 0)
-        {
-            target = attractionTargets[Random.Range(0, attractionTargets.Length)];
-        }
+        this.target = target;
     }
 }

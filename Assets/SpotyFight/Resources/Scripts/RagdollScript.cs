@@ -5,9 +5,11 @@ using UnityEngine;
 public class RagdollScript : MonoBehaviour
 {
     // Start is called before the first frame update
+    public GameObject gm;
     void Start()
     {
-        //Invoke("DestroyMySelf",20);
+        gm = GameObject.FindGameObjectWithTag("GameManager");
+        Invoke("DestroyMySelf",20);
     }
 
     // Update is called once per frame
@@ -17,6 +19,8 @@ public class RagdollScript : MonoBehaviour
     }
 
     void DestroyMySelf(){
+        gm.GetComponent<GameManager>().diedEnemy();
+        gm.GetComponent<GameManager>().attractionTargetsBlocked.Remove(gameObject);//No ta be Mirar
         Destroy(gameObject);
     }
 }

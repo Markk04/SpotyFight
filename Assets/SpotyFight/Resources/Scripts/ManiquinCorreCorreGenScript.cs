@@ -9,17 +9,22 @@ public class ManiquinCorreCorreGenScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Transform childTransform = transform.Find("GenPosition");
-        if (childTransform != null)
-        {
-            // Instanciar el prefab en la posición y rotación del hijo
-            Instantiate(maniquinCorreCorrePrefab, childTransform.position, childTransform.rotation);
-        }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void enemyGenerator(GameObject target){
+        Transform childTransform = transform.Find("GenPosition");
+        if (childTransform != null)
+        {
+            // Instanciar el prefab en la posición y rotación del hijo
+            GameObject maniquinCorreCorre = Instantiate(maniquinCorreCorrePrefab, childTransform.position, childTransform.rotation);
+            maniquinCorreCorre.setTarget(target);
+        }
     }
 }

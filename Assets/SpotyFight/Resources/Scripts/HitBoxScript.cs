@@ -8,6 +8,7 @@ public class HitBoxScript : MonoBehaviour
     public int id;
 
     public GameObject cartoonEffect;
+    private GameObject gm;
 
     // Referencia al HitScript del "tío"
     private HitScript hitScript;
@@ -20,6 +21,7 @@ public class HitBoxScript : MonoBehaviour
         // Busca al "tío" del objeto actual
         player = GameObject.FindGameObjectWithTag("jugador").transform;
         Transform parent = transform.parent;
+        gm = GameObject.FindGameObjectWithTag("GameManager");
         if (parent != null)
         {
             Transform grandParent = parent.parent; // El abuelo del objeto actual
@@ -57,6 +59,7 @@ public class HitBoxScript : MonoBehaviour
                 {
                     // Instancia el efecto con la rotación correcta
                     Instantiate(cartoonEffect, transform.position, new Quaternion(0.0f,0.0f,0.0f,1));
+                    gm.GetComponent<GameManager>().sumScore(1);
                 }
                 else
                 {

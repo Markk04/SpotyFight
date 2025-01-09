@@ -12,6 +12,7 @@ public class HitScript : MonoBehaviour
     private Rigidbody mannequinRb;  // Rigidbody of the mannequin.
     private bool triggerFinalHit;
     public GameObject maniquiRagdoll;
+    public GameObject gm;
     
 
     // Lista de ids
@@ -21,6 +22,7 @@ public class HitScript : MonoBehaviour
     void Start()
     {
         // Obtener el componente Renderer del espectador
+        gm = GameObject.FindGameObjectWithTag("GameManager");
         SkinnedMeshRenderer skinnedRenderer = gameObject.GetComponent<SkinnedMeshRenderer>();
         boxCollider = GetComponentInParent<BoxCollider>();
         mannequinRb = GetComponentInParent<Rigidbody>();
@@ -87,6 +89,7 @@ public class HitScript : MonoBehaviour
             //triggerFinalHit=false;
             //Invoke("DestroyMySelf",10);
             Instantiate(maniquiRagdoll, gameObject.transform.position, Quaternion.identity);
+            gm.GetComponent<GameManager>().sumScore(2);
             DestroyMySelf();
         } else if (idsToHit.Count == 1){
             OtorgarColores(idsToHit[0], new Color(100, 0, 0), true, 10);
