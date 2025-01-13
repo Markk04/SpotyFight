@@ -58,9 +58,9 @@ public class maniquiStart : MonoBehaviour
         // Calcular la fuerza de la colisión
         float collisionForce = other.relativeVelocity.magnitude * other.rigidbody.mass;
         Debug.Log("Fuerza de colisión: " + collisionForce);
+        SetEnabled(true);
         gm.GetComponent<GameManager>().startGame();
         Invoke("DestroyMySelf",20);
-        SetEnabled(true);
     }
 
     private void DestroyMySelf()

@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     private float timer;
     private GameObject[] attractionTargets; // Array de objetos a los que se puede atraer
     private HashSet<GameObject> attractionTargetsBlocked; // HashSet para objetivos bloqueados
-    private int gamePhase = 0; // 0: Inicio, 1: Un enemigo, 2: Dos enemigos, etc. -1: Fin
+    public int gamePhase = 0; // 0: Inicio, 1: Un enemigo, 2: Dos enemigos, etc. -1: Fin
     private int maxEnemies = 1;
     private int enemiesSpawned = 0;
 

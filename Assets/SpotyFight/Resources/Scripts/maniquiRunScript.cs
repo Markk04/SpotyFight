@@ -124,13 +124,6 @@ public class ManiquiRunScript : MonoBehaviour
                 attractionSpeed = 0f;
                 canMove = false;
 
-                // Desactivar el BoxCollider de 'other'
-                BoxCollider boxCollider = other.GetComponent<BoxCollider>();
-                if (boxCollider != null)
-                {
-                    boxCollider.enabled = false;  // Desactiva el BoxCollider
-                }
-
                 // Hacer la animación con trigger "levanta" y mover hacia arriba
                 if (animator != null)
                 {
