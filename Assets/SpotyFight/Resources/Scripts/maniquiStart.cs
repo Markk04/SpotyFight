@@ -5,7 +5,7 @@ using UnityEngine;
 public class maniquiStart : MonoBehaviour
 {
     private Rigidbody[] rigidbodies;
-    //private GameObject gm;
+    private GameObject gm;
 
     void Start()
     {
@@ -13,7 +13,7 @@ public class maniquiStart : MonoBehaviour
         rigidbodies = transform.GetComponentsInChildren<Rigidbody>();
         SetEnabled(false);
 
-        //gm = GameObject.FindGameObjectWithTag("GameManager");
+        gm = GameObject.FindGameObjectWithTag("GameManager");
 
         // Asegurarse de que cada hijo tenga el script de detección de colisiones
         foreach (Rigidbody rb in rigidbodies)
@@ -58,7 +58,13 @@ public class maniquiStart : MonoBehaviour
         // Calcular la fuerza de la colisión
         float collisionForce = other.relativeVelocity.magnitude * other.rigidbody.mass;
         Debug.Log("Fuerza de colisión: " + collisionForce);
-
+        gm.GetComponent<GameManager>().startGame();
+        Invoke("DestroyMySelf",20);
         SetEnabled(true);
+    }
+
+    private void DestroyMySelf()
+    {
+        Destroy(gameObject);
     }
 }
