@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI; // Asegúrate de que usas este espacio de nombres si necesitas mostrar el tiempo en pantalla
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,34 +11,36 @@ public class GameManager : MonoBehaviour
     private int seconds;
     private int minutes;
     private float timer;
-    public GameObject[] attractionTargets; // Array de objetos a los que se puede atraer
-    private Gameobject[] attractionTargetsBlocked; // Array de objetos a los que se puede atraer
-    public int gamePhase = 1; // 0: Inicio, 1: Un enemig, 2: Dos enemigs, 3: Tres enemigs, 4: Quatre enemigs... -1: Fin
+    private GameObject[] attractionTargets; // Array de objetos a los que se puede atraer
+    private HashSet<GameObject> attractionTargetsBlocked; // HashSet para objetivos bloqueados
+    private int gamePhase = 0; // 0: Inicio, 1: Un enemigo, 2: Dos enemigos, etc. -1: Fin
     private int maxEnemies = 1;
     private int enemiesSpawned = 0;
-
-    //public Text timerText;
 
     void Start()
     {
         spectatorManager = GameObject.FindGameObjectWithTag("ScoreManagement");
         enemyGenerator = GameObject.FindGameObjectWithTag("ManiquinGeneratorTag");
         scoreManager = GameObject.FindGameObjectWithTag("ScoreManagement");
-        
+        attractionTargets = GameObject.FindGameObjectsWithTag("attractionTarget");
+
+        if (spectatorManager == null || enemyGenerator == null || scoreManager == null)
+        {
+            Debug.LogError("Uno o más objetos no están asignados. Verifica las etiquetas o asignaciones.");
+        }
+
         seconds = 0;
         minutes = 0;
         timer = 0f;
 
-        // Opcional: inicializa el texto si tienes un elemento UI
-        //if (timerText != null)
-        //{
-        //    timerText.text = "00:00";
-        //}
+        // Inicializa el conjunto de objetivos bloqueados
+        attractionTargetsBlocked = new HashSet<GameObject>();
     }
 
     void Update()
     {
-        if(gamePhase>0){
+        if (gamePhase > 0)
+        {
             // Incrementa el temporizador basado en el tiempo real transcurrido
             timer += Time.deltaTime;
 
@@ -47,14 +49,23 @@ public class GameManager : MonoBehaviour
                 timer = 0f; // Reinicia el temporizador para el siguiente segundo
                 seconds++;
 
-                //Spawn any enemy
-                if(enemiesSpawned < maxEnemies){
-                    GameObject targetSelected = attractionTargets[Random.Range(0, attractionTargets.Length)];
-                    while(targetSelected in attractionTargetsBlocked){
-                        targetSelected = attractionTargets[Random.Range(0, attractionTargets.Length)];
+                // Genera un enemigo si es posible
+                if (enemiesSpawned < maxEnemies)
+                {
+                    List<GameObject> validTargets = new List<GameObject>(attractionTargets);
+                    validTargets.RemoveAll(target => attractionTargetsBlocked.Contains(target));
+
+                    if (validTargets.Count > 0)
+                    {
+                        GameObject targetSelected = validTargets[Random.Range(0, validTargets.Count)];
+                        enemyGenerator.GetComponent<ManiquinCorreCorreGenScript>().enemyGenerator(targetSelected);
+                        enemiesSpawned++;
+                        attractionTargetsBlocked.Add(targetSelected);
                     }
-                    enemyGenerator.GetComponent<ManiquinCorreCorreGenScript>().enemyGenerator(targetSelected);
-                    enemiesSpawned++;
+                    else
+                    {
+                        Debug.LogWarning("No hay objetivos válidos para generar enemigos.");
+                    }
                 }
 
                 if (seconds >= 60)
@@ -62,59 +73,62 @@ public class GameManager : MonoBehaviour
                     seconds = 0;
                     minutes++;
                 }
-
-                // Actualiza el texto del contador en pantalla, si es necesario
-                //if (timerText != null)
-                //{
-                //    timerText.text = string.Format("{0:D2}:{1:D2}", minutes, seconds);
-                //}
             }
         }
 
-        switch(gamePhase){
+        // Actualiza la lógica de fases del juego
+        switch (gamePhase)
+        {
             case 1:
-            maxEnemies = 1;
-            if(scoreManager.GetComponent<ScoreManagementScript>().playerScore >= 10){
-                gamePhase = 2;
-            }
+                maxEnemies = 1;
+                if (scoreManager.GetComponent<ScoreManagementScript>().playerScore >= 10)
+                {
+                    gamePhase = 2;
+                }
                 break;
             case 2:
-            maxEnemies = 2;
-            if(scoreManager.GetComponent<ScoreManagementScript>().playerScore >= 20){
-                gamePhase = 3;
-            }
+                maxEnemies = 2;
+                if (scoreManager.GetComponent<ScoreManagementScript>().playerScore >= 20)
+                {
+                    gamePhase = 3;
+                }
                 break;
             case 3:
-            maxEnemies = 3;
-            if(scoreManager.GetComponent<ScoreManagementScript>().playerScore >= 40){
-                gamePhase = 4;
-            }
+                maxEnemies = 3;
+                if (scoreManager.GetComponent<ScoreManagementScript>().playerScore >= 40)
+                {
+                    gamePhase = 4;
+                }
                 break;
             case 4:
-            maxEnemies = 4;
-            if(scoreManager.GetComponent<ScoreManagementScript>().playerScore >= 80){
-                gamePhase = 5;
-            }
+                maxEnemies = 4;
+                if (scoreManager.GetComponent<ScoreManagementScript>().playerScore >= 80)
+                {
+                    gamePhase = 5;
+                }
                 break;
             case 5:
-            maxEnemies = 5;
-            if(scoreManager.GetComponent<ScoreManagementScript>().playerScore >= 160){
-                gamePhase = 6;
-            }
+                maxEnemies = 5;
+                if (scoreManager.GetComponent<ScoreManagementScript>().playerScore >= 160)
+                {
+                    gamePhase = 6;
+                }
                 break;
             case 6:
-            maxEnemies = 6;
+                maxEnemies = 6;
                 break;
             case -1:
+                // Fin del juego
                 break;
         }
-        
-
     }
 
     public void sumScore(int n)
     {
-        spectatorManager.GetComponent<ScoreManagementScript>().SumScore(n);
+        if (spectatorManager != null)
+        {
+            spectatorManager.GetComponent<ScoreManagementScript>().SumScore(n);
+        }
     }
 
     public void setGamePhase(int phase)
@@ -122,15 +136,26 @@ public class GameManager : MonoBehaviour
         gamePhase = phase;
     }
 
-    public void diedEnemy()
+    public void diedEnemy(GameObject target)
     {
         enemiesSpawned--;
+        // Desbloquea el objetivo asociado con el enemigo destruido
+        if (attractionTargetsBlocked.Contains(target))
+        {
+            attractionTargetsBlocked.Remove(target);
+        }
+        else
+        {
+            Debug.LogWarning("El objetivo a desbloquear no estaba bloqueado.");
+        }
     }
 
-    public GameObject[] getAttractionTargetsBlocked()
+    public HashSet<GameObject> getAttractionTargetsBlocked()
     {
         return attractionTargetsBlocked;
     }
 
-
+    public void startGame(){
+        gamePhase = 1;
+    }
 }

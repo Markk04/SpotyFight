@@ -13,6 +13,7 @@ public class HitScript : MonoBehaviour
     private bool triggerFinalHit;
     public GameObject maniquiRagdoll;
     public GameObject gm;
+    private GameObject target;
     
 
     // Lista de ids
@@ -90,6 +91,7 @@ public class HitScript : MonoBehaviour
             //Invoke("DestroyMySelf",10);
             Instantiate(maniquiRagdoll, gameObject.transform.position, Quaternion.identity);
             gm.GetComponent<GameManager>().sumScore(2);
+            gm.GetComponent<GameManager>().diedEnemy(target);
             DestroyMySelf();
         } else if (idsToHit.Count == 1){
             OtorgarColores(idsToHit[0], new Color(100, 0, 0), true, 10);
@@ -193,6 +195,10 @@ public class HitScript : MonoBehaviour
 
     void DestroyMySelf(){
         Destroy(transform.parent.gameObject);
+    }
+
+    public void setTarget(GameObject target){
+        this.target = target;
     }
 
 }

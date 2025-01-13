@@ -511,6 +511,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7728464482418408223, guid: 3dca15bee3af18c4a8fd66bf09dc1ddf, type: 3}
+      propertyPath: m_Size.x
+      value: 4.378322
+      objectReference: {fileID: 0}
+    - target: {fileID: 7728464482418408223, guid: 3dca15bee3af18c4a8fd66bf09dc1ddf, type: 3}
+      propertyPath: m_Size.z
+      value: 1.9142413
+      objectReference: {fileID: 0}
+    - target: {fileID: 7728464482418408223, guid: 3dca15bee3af18c4a8fd66bf09dc1ddf, type: 3}
+      propertyPath: m_Center.x
+      value: 1.6891621
+      objectReference: {fileID: 0}
+    - target: {fileID: 7728464482418408223, guid: 3dca15bee3af18c4a8fd66bf09dc1ddf, type: 3}
+      propertyPath: m_Center.z
+      value: -0.15223345
+      objectReference: {fileID: 0}
     - target: {fileID: 8858583591239831562, guid: 3dca15bee3af18c4a8fd66bf09dc1ddf, type: 3}
       propertyPath: m_Name
       value: HighColiderForAnimation

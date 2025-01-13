@@ -24,7 +24,7 @@ public class ManiquinCorreCorreGenScript : MonoBehaviour
         {
             // Instanciar el prefab en la posición y rotación del hijo
             GameObject maniquinCorreCorre = Instantiate(maniquinCorreCorrePrefab, childTransform.position, childTransform.rotation);
-            maniquinCorreCorre.setTarget(target);
+            maniquinCorreCorre.GetComponent<ManiquiRunScript>().setTarget(target);
         }
     }
 }

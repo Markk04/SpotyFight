@@ -19,8 +19,6 @@ public class RagdollScript : MonoBehaviour
     }
 
     void DestroyMySelf(){
-        gm.GetComponent<GameManager>().diedEnemy();
-        gm.GetComponent<GameManager>().attractionTargetsBlocked.Remove(gameObject);//No ta be Mirar
         Destroy(gameObject);
     }
 }

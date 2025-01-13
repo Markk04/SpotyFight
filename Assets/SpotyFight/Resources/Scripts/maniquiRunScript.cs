@@ -12,13 +12,8 @@ public class ManiquiRunScript : MonoBehaviour
     private Rigidbody rb; // Referencia al Rigidbody
     public GameObject maniquinPrefab; // Arrastra aquí tu prefab desde el inspector
     private float attractionSpeed = 17f; // Velocidad de atracción
-    private float attractionDelay = 0.7f;
     private GameObject target; // El objetivo al que el muñeco se va a mover
-
-    private GameObject maniquiWithRigidBody;
-
-    private GameObject sightTarget;
-
+    private bool canAtraction = false; // Indica si la atracción es posible
     void Start()
     {
         // Obtener el componente Animator del objeto hijo "Armature"
@@ -41,14 +36,6 @@ public class ManiquiRunScript : MonoBehaviour
             animator.SetTrigger("corre");
         }
 
-        // Asignar automáticamente los objetos con el tag "attractionTarget" al array attractionTargets
-        attractionTargets = GameObject.FindGameObjectsWithTag("attractionTarget");
-
-        maniquiWithRigidBody = GameObject.FindGameObjectWithTag("maniquiWithRigidBody");
-        maniquiWithRigidBody.SetActive(false);
-
-        sightTarget = GameObject.FindGameObjectWithTag("sightTarget");
-
     }
 
     void Update()
@@ -65,18 +52,13 @@ public class ManiquiRunScript : MonoBehaviour
 
         // Verificar si la animación "quietoParao" está en ejecución
         if (animator != null && animator.GetCurrentAnimatorStateInfo(0).IsName("quietoParao"))
-    {
-        Debug.Log("El GameObject está en la animación 'quietoParao'.");
-
-        // Sincronizar la posición de 'maniquiWithRigidBody' con la posición del objeto actual
-        if (maniquiWithRigidBody != null)
         {
-            maniquiWithRigidBody.transform.position = transform.position;
-            maniquiWithRigidBody.SetActive(true);
-        }
+            Debug.Log("El GameObject está en la animación 'quietoParao'.");
+
 
         //Crear el gameObject de manikin para golpiar
-        Instantiate(maniquinPrefab, gameObject.transform.position, Quaternion.identity);
+        GameObject maniquin = Instantiate(maniquinPrefab, gameObject.transform.position, Quaternion.identity);
+        maniquin.GetComponentInChildren<HitScript>().setTarget(target);
 
         // Desactivar el GameObject que tiene el script (esto desactiva todo el objeto)
         Destroy(gameObject);
@@ -95,7 +77,7 @@ public class ManiquiRunScript : MonoBehaviour
         }
 
         // Si hay un objetivo de atracción, mover al muñeco hacia él
-        if (target != null)
+        if (target != null && canAtraction)
         {
             // Mover el muñeco hacia el objetivo de manera continua
             transform.position = Vector3.MoveTowards(transform.position, target.transform.position, attractionSpeed * Time.deltaTime);
@@ -130,11 +112,10 @@ public class ManiquiRunScript : MonoBehaviour
             if (animator != null)
             {
                 animator.SetTrigger("falling");
+                Invoke("doCanAtraction",0.7f);
                 Debug.Log("saltando");
             }
 
-            // Iniciar la atracción aleatoria
-            Invoke("StartAttraction", attractionDelay);
         }
         // Verifica si el trigger tiene el tag "Fall"
         if (other.CompareTag("attractionTarget"))
@@ -170,5 +151,9 @@ public class ManiquiRunScript : MonoBehaviour
     public void setTarget(GameObject target)
     {
         this.target = target;
+    }
+    private void doCanAtraction()
+    {
+        canAtraction = true;
     }
 }
