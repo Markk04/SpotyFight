@@ -17,6 +17,7 @@ TagManager:
   - maniquiWithRigidBody
   - GameManager
   - ManiquinGeneratorTag
+  - ringExterior
   layers:
   - Default
   - TransparentFX
