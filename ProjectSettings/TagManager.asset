@@ -17,6 +17,8 @@ TagManager:
   - maniquiWithRigidBody
   - GameManager
   - ManiquinGeneratorTag
+  - Screen
+  - CamManager
   layers:
   - Default
   - TransparentFX
