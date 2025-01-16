@@ -158,4 +158,8 @@ public class GameManager : MonoBehaviour
     public void startGame(){
         gamePhase = 1;
     }
+
+    public void OnScoreColliderEnter(){
+        sumScore(5);
+    }
 }

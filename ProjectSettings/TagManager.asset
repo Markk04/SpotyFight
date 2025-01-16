@@ -19,6 +19,7 @@ TagManager:
   - ManiquinGeneratorTag
   - Screen
   - CamManager
+  - ringExterior
   layers:
   - Default
   - TransparentFX
