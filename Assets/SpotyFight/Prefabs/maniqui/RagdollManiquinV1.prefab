@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5821504185807006807}
   m_Layer: 0
   m_Name: Bone.007
-  m_TagString: Untagged
+  m_TagString: ragdollManiquin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

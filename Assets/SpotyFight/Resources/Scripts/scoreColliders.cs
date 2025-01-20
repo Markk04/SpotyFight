@@ -20,11 +20,11 @@ public class scoreColliders : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
-        // Verifica si el trigger tiene el tag "Stop"
-        if (other.CompareTag("ringExterior"))
+        if (other.CompareTag("ragdollManiquin"))
         {
+            Debug.Log("Score collider hit");
             gameManager.GetComponent<GameManager>().OnScoreColliderEnter();
         }
     }

@@ -161,5 +161,6 @@ public class GameManager : MonoBehaviour
 
     public void OnScoreColliderEnter(){
         sumScore(5);
+        Debug.Log("Las tirao mu bien");
     }
 }
