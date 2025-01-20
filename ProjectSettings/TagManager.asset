@@ -21,6 +21,7 @@ TagManager:
   - CamManager
   - ringExterior
   - ragdollManiquin
+  - Light
   layers:
   - Default
   - TransparentFX
