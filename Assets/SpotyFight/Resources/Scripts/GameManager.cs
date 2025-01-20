@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     private int enemiesSpawned = 0;
     public GameObject[] lights;
     public GameObject ringLight;
+    private GameObject[] spectatorLights;
 
     void Start()
     {
@@ -30,6 +31,8 @@ public class GameManager : MonoBehaviour
         scoreManager = GameObject.FindGameObjectWithTag("ScoreManagement");
         attractionTargets = GameObject.FindGameObjectsWithTag("attractionTarget");
         lights = GameObject.FindGameObjectsWithTag("Light");
+        spectatorLights = GameObject.FindGameObjectsWithTag("spectatorLight");
+        Mezclar(spectatorLights);
 
         showGirl("Golpeja al maniqui per començar el joc. Axel maricon");
 
@@ -46,6 +49,7 @@ public class GameManager : MonoBehaviour
         attractionTargetsBlocked = new HashSet<GameObject>();
 
         ringLight.SetActive(false);
+        turnOffSpectatorLights();
     }
 
     void Update()
@@ -95,6 +99,8 @@ public class GameManager : MonoBehaviour
                 if (scoreManager.GetComponent<ScoreManagementScript>().playerScore >= 10)
                 {
                     gamePhase = 2;
+                    spectatorLights[0].SetActive(true);
+                    spectatorLights[1].SetActive(true);
 
                 }
                 break;
@@ -103,6 +109,8 @@ public class GameManager : MonoBehaviour
                 if (scoreManager.GetComponent<ScoreManagementScript>().playerScore >= 20)
                 {
                     gamePhase = 3;
+                    spectatorLights[2].SetActive(true);
+                    spectatorLights[3].SetActive(true);
                 }
                 break;
             case 3:
@@ -110,6 +118,8 @@ public class GameManager : MonoBehaviour
                 if (scoreManager.GetComponent<ScoreManagementScript>().playerScore >= 40)
                 {
                     gamePhase = 4;
+                    spectatorLights[4].SetActive(true);
+                    spectatorLights[5].SetActive(true);
                 }
                 break;
             case 4:
@@ -117,6 +127,8 @@ public class GameManager : MonoBehaviour
                 if (scoreManager.GetComponent<ScoreManagementScript>().playerScore >= 80)
                 {
                     gamePhase = 5;
+                    spectatorLights[6].SetActive(true);
+                    spectatorLights[7].SetActive(true);
                 }
                 break;
             case 5:
@@ -124,6 +136,8 @@ public class GameManager : MonoBehaviour
                 if (scoreManager.GetComponent<ScoreManagementScript>().playerScore >= 160)
                 {
                     gamePhase = 6;
+                    spectatorLights[8].SetActive(true);
+                    spectatorLights[9].SetActive(true);
                 }
                 break;
             case 6:
@@ -169,6 +183,8 @@ public class GameManager : MonoBehaviour
 
     public void startGame(){
         gamePhase = 1;
+        spectatorLights[10].SetActive(true);
+        spectatorLights[11].SetActive(true);
     }
 
     public void OnScoreColliderEnter(){
@@ -186,28 +202,43 @@ public class GameManager : MonoBehaviour
     }
 
     public void turnOffTheLights(){
-        Debug.Log("Apagando luces");
-        Debug.Log(lights.Length);
         foreach (GameObject light in lights)
         {
             light.SetActive(false);
-            Debug.Log("Apagando luz");
-            Debug.Log(light.name);
         }
     }
 
     public void turnOnTheLights(){
-        Debug.Log("Encendiendo luces");
-        Debug.Log(lights.Length);
         foreach (GameObject light in lights)
         {
-            if (light == null){
-                Debug.Log("La luz es nula");
-            }
             light.SetActive(true);
-            Debug.Log("Encendiendo luz");
-            Debug.Log(light.name);
         }
     }
+
+    public void turnOffSpectatorLights(){
+        foreach (GameObject light in spectatorLights)
+        {
+            light.SetActive(false);
+        }
+    }
+
+    public void turnOnSpectatorLights(){
+        foreach (GameObject light in spectatorLights)
+        {
+            light.SetActive(true);
+        }
+    }
+
+    void Mezclar(GameObject[] array)
+        {
+            int n = array.Length;
+            for (int i = 0; i < n; i++)
+            {
+                int randomIndex = Random.Range(i, n);
+                GameObject temp = array[i];
+                array[i] = array[randomIndex];
+                array[randomIndex] = temp;
+            }
+        }
 
 }

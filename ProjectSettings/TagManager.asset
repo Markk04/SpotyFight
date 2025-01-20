@@ -22,6 +22,7 @@ TagManager:
   - ringExterior
   - ragdollManiquin
   - Light
+  - spectatorsLight
   layers:
   - Default
   - TransparentFX
