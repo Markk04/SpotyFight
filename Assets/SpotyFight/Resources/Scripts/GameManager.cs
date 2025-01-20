@@ -1,13 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
     private GameObject spectatorManager;
     private GameObject enemyGenerator;
     private GameObject scoreManager;
+    private GameObject girlPrefab;
+    public GameObject girl;
     private int seconds;
     private int minutes;
     private float timer;
@@ -17,6 +21,7 @@ public class GameManager : MonoBehaviour
     private int maxEnemies = 1;
     private int enemiesSpawned = 0;
     public GameObject[] lights;
+    public GameObject ringLight;
 
     void Start()
     {
@@ -26,10 +31,7 @@ public class GameManager : MonoBehaviour
         attractionTargets = GameObject.FindGameObjectsWithTag("attractionTarget");
         lights = GameObject.FindGameObjectsWithTag("Light");
 
-        foreach (GameObject light in lights)
-        {
-            light.SetActive(false);
-        }
+        showGirl("Golpeja al maniqui per començar el joc. Axel maricon");
 
         if (spectatorManager == null || enemyGenerator == null || scoreManager == null)
         {
@@ -42,6 +44,8 @@ public class GameManager : MonoBehaviour
 
         // Inicializa el conjunto de objetivos bloqueados
         attractionTargetsBlocked = new HashSet<GameObject>();
+
+        ringLight.SetActive(false);
     }
 
     void Update()
@@ -91,6 +95,7 @@ public class GameManager : MonoBehaviour
                 if (scoreManager.GetComponent<ScoreManagementScript>().playerScore >= 10)
                 {
                     gamePhase = 2;
+
                 }
                 break;
             case 2:
@@ -170,4 +175,39 @@ public class GameManager : MonoBehaviour
         sumScore(5);
         Debug.Log("Las tirao mu bien");
     }
+
+    public void showGirl(String msg){
+        girlPrefab = Instantiate(girl, transform.position, transform.rotation);
+        girlPrefab.GetComponent<girlSquirt>().setText("TU RECONTRAPUTISSIMA MADRE");
+    }
+
+    public void hideGirl(){
+        Destroy(girlPrefab);
+    }
+
+    public void turnOffTheLights(){
+        Debug.Log("Apagando luces");
+        Debug.Log(lights.Length);
+        foreach (GameObject light in lights)
+        {
+            light.SetActive(false);
+            Debug.Log("Apagando luz");
+            Debug.Log(light.name);
+        }
+    }
+
+    public void turnOnTheLights(){
+        Debug.Log("Encendiendo luces");
+        Debug.Log(lights.Length);
+        foreach (GameObject light in lights)
+        {
+            if (light == null){
+                Debug.Log("La luz es nula");
+            }
+            light.SetActive(true);
+            Debug.Log("Encendiendo luz");
+            Debug.Log(light.name);
+        }
+    }
+
 }

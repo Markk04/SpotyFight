@@ -60,7 +60,9 @@ public class maniquiStart : MonoBehaviour
         Debug.Log("Fuerza de colisión: " + collisionForce);
         SetEnabled(true);
         gm.GetComponent<GameManager>().startGame();
-        Invoke("DestroyMySelf",20);
+        gm.GetComponent<GameManager>().hideGirl();
+        gm.GetComponent<GameManager>().turnOffTheLights();
+        Invoke("DestroyMySelf",2);
     }
 
     private void DestroyMySelf()

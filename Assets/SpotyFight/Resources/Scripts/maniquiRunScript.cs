@@ -14,8 +14,12 @@ public class ManiquiRunScript : MonoBehaviour
     private float attractionSpeed = 17f; // Velocidad de atracción
     private GameObject target; // El objetivo al que el muñeco se va a mover
     private bool canAtraction = false; // Indica si la atracción es posible
+    private GameObject gm;
+
     void Start()
     {
+        gm = GameObject.FindGameObjectWithTag("GameManager");
+
         // Obtener el componente Animator del objeto hijo "Armature"
         Transform armatureTransform = transform.Find("Armature");
         if (armatureTransform != null)
@@ -129,6 +133,9 @@ public class ManiquiRunScript : MonoBehaviour
                 {
                     animator.SetTrigger("levanta");
                 }
+
+                gm.GetComponent<GameManager>().turnOnTheLights();
+
             }
             }
 
