@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
         enemyGenerator = GameObject.FindGameObjectWithTag("ManiquinGeneratorTag");
         scoreManager = GameObject.FindGameObjectWithTag("ScoreManagement");
         attractionTargets = GameObject.FindGameObjectsWithTag("attractionTarget");
-        //lights = GameObject.FindGameObjectsWithTag("Light");
+        lights = GameObject.FindGameObjectsWithTag("Light");
 
         foreach (GameObject light in lights)
         {
