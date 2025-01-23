@@ -89,8 +89,9 @@ public class HitScript : MonoBehaviour
             //mannequinRb.isKinematic = false;
             //triggerFinalHit=false;
             //Invoke("DestroyMySelf",10);
-            Instantiate(maniquiRagdoll, gameObject.transform.position, Quaternion.identity);
             gm.GetComponent<GameManager>().sumScore(2);
+            //passarARagdoll();
+            Instantiate(maniquiRagdoll, gameObject.transform.position, Quaternion.identity);
             gm.GetComponent<GameManager>().diedEnemy(target);
             DestroyMySelf();
         } else if (idsToHit.Count == 1){
@@ -199,6 +200,11 @@ public class HitScript : MonoBehaviour
 
     public void setTarget(GameObject target){
         this.target = target;
+    }
+
+    public void passarARagdoll()
+    {
+        
     }
 
 }

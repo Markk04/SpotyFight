@@ -23,6 +23,7 @@ TagManager:
   - ragdollManiquin
   - Light
   - spectatorsLight
+  - maniquisQueSePegan
   layers:
   - Default
   - TransparentFX

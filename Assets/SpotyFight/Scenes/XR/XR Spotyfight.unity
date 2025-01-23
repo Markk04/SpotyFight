@@ -1775,7 +1775,7 @@ MonoBehaviour:
   PlayerScore: 0
   PlayerScoreText: {fileID: 739491414}
   timerText: {fileID: 1490531356}
-  startTimeInSeconds: 120
+  maniquiRagdoll: {fileID: 6600275918007133952, guid: d729385a70673494cbca8b8f87fbc6f0, type: 3}
 --- !u!1 &1443777972 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6823989850770325104, guid: f208d80ab06766c428d85226d84c01af, type: 3}

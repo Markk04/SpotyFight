@@ -27,9 +27,11 @@ public class GameManager : MonoBehaviour
     public int PlayerScore;
     public TextMeshPro PlayerScoreText;
     public TextMeshPro timerText; // Referencia al componente TextMeshProUGUI
-    private float startTimeInSeconds = 600f; // Tiempo inicial en segundos (ejemplo: 2 minutos)
+    private float startTimeInSeconds = 120f; // Tiempo inicial en segundos (ejemplo: 2 minutos)
     private float timeRemaining;
     private bool gameHasStared = false;
+    private GameObject[] maniquisQueSePegan;
+    public GameObject maniquiRagdoll;
 
     void Start()
     {
@@ -233,6 +235,11 @@ public class GameManager : MonoBehaviour
     public void gameOver()
     {
         setGamePhase(-1);
+        maniquisQueSePegan = GameObject.FindGameObjectsWithTag("maniquisQueSePegan");
+        foreach (GameObject maniqui in maniquisQueSePegan)
+        {
+            Destroy(maniqui);
+        }
     }
 
     public void OnScoreColliderEnter(){

@@ -849,7 +849,7 @@ GameObject:
   - component: {fileID: 7439657671322365105}
   m_Layer: 0
   m_Name: manikicoliderV4
-  m_TagString: Untagged
+  m_TagString: maniquisQueSePegan
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2286,6 +2286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainColor: {r: 0, g: 0, b: 0, a: 0}
   maniquiRagdoll: {fileID: 6600275918007133952, guid: d729385a70673494cbca8b8f87fbc6f0, type: 3}
+  gm: {fileID: 0}
   originalList: 0000000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f0000001000000011000000120000001300000014000000150000001600000017000000
 --- !u!1 &4113742304276664488
 GameObject:
