@@ -238,7 +238,17 @@ public class GameManager : MonoBehaviour
         maniquisQueSePegan = GameObject.FindGameObjectsWithTag("maniquisQueSePegan");
         foreach (GameObject maniqui in maniquisQueSePegan)
         {
-            Destroy(maniqui);
+            // Encuentra el GameObject hijo llamado "Cube"
+            Transform cubeTransform = maniqui.transform.Find("Cube");
+            if (cubeTransform != null)
+            {
+                GameObject cube = cubeTransform.gameObject;
+                cube.GetComponent<HitScript>().passarARagdoll();
+            }
+            else
+            {
+                Debug.LogWarning("No se encontró el GameObject hijo 'Cube' en " + maniqui.name);
+            }
         }
     }
 

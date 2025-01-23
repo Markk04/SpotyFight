@@ -90,10 +90,7 @@ public class HitScript : MonoBehaviour
             //triggerFinalHit=false;
             //Invoke("DestroyMySelf",10);
             gm.GetComponent<GameManager>().sumScore(2);
-            //passarARagdoll();
-            Instantiate(maniquiRagdoll, gameObject.transform.position, Quaternion.identity);
-            gm.GetComponent<GameManager>().diedEnemy(target);
-            DestroyMySelf();
+            passarARagdoll();
         } else if (idsToHit.Count == 1){
             OtorgarColores(idsToHit[0], new Color(100, 0, 0), true, 10);
         }
@@ -204,7 +201,9 @@ public class HitScript : MonoBehaviour
 
     public void passarARagdoll()
     {
-        
+        Instantiate(maniquiRagdoll, gameObject.transform.position, Quaternion.identity);
+        gm.GetComponent<GameManager>().diedEnemy(target);
+        DestroyMySelf();
     }
 
 }
