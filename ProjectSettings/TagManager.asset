@@ -24,6 +24,7 @@ TagManager:
   - Light
   - spectatorsLight
   - maniquisQueSePegan
+  - ManiquisQueSeCorren
   layers:
   - Default
   - TransparentFX

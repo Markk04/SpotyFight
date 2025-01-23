@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     private float timeRemaining;
     private bool gameHasStared = false;
     private GameObject[] maniquisQueSePegan;
-    public GameObject maniquiRagdoll;
+    private GameObject[] maniquisQueSeCorren;
 
     void Start()
     {
@@ -249,6 +249,11 @@ public class GameManager : MonoBehaviour
             {
                 Debug.LogWarning("No se encontró el GameObject hijo 'Cube' en " + maniqui.name);
             }
+        }
+        maniquisQueSeCorren = GameObject.FindGameObjectsWithTag("ManiquisQueSeCorren");
+        foreach (GameObject maniquiCorre in maniquisQueSeCorren)
+        {
+            maniquiCorre.GetComponent<HitScript>().passarARagdoll();
         }
     }
 

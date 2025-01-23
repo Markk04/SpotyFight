@@ -15,6 +15,7 @@ public class ManiquiRunScript : MonoBehaviour
     private GameObject target; // El objetivo al que el muñeco se va a mover
     private bool canAtraction = false; // Indica si la atracción es posible
     private GameObject gm;
+    public GameObject maniquiRagdoll;
 
     void Start()
     {
@@ -86,7 +87,7 @@ public class ManiquiRunScript : MonoBehaviour
             // Mover el muñeco hacia el objetivo de manera continua
             transform.position = Vector3.MoveTowards(transform.position, target.transform.position, attractionSpeed * Time.deltaTime);
         }
-
+        
     }
 
     // Este método se ejecuta cuando entra en un trigger
@@ -155,5 +156,16 @@ public class ManiquiRunScript : MonoBehaviour
     private void doCanAtraction()
     {
         canAtraction = true;
+    }
+    
+    void DestroyMySelf(){
+        Destroy(gameObject);
+    }
+    
+    public void passarARagdoll()
+    {
+        Instantiate(maniquiRagdoll, gameObject.transform.position, Quaternion.identity);
+        gm.GetComponent<GameManager>().diedEnemy(target);
+        DestroyMySelf();
     }
 }
