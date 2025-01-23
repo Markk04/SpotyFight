@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     public int PlayerScore;
     public TextMeshPro PlayerScoreText;
     public TextMeshPro timerText; // Referencia al componente TextMeshProUGUI
-    public float startTimeInSeconds = 120f; // Tiempo inicial en segundos (ejemplo: 2 minutos)
+    private float startTimeInSeconds = 600f; // Tiempo inicial en segundos (ejemplo: 2 minutos)
     private float timeRemaining;
     private bool gameHasStared = false;
 
@@ -74,7 +74,9 @@ public class GameManager : MonoBehaviour
                   {
                       timeRemaining = 0; // Asegurarse de que no sea negativo
                       UpdateTimerText();
-                      // Aquí puedes llamar a otra función o hacer algo cuando el tiempo se acabe
+                      // Game Over 
+                      gameOver();
+
                   }  
         }
         
@@ -226,6 +228,11 @@ public class GameManager : MonoBehaviour
         int minutes = Mathf.FloorToInt(timeRemaining / 60);
         int seconds = Mathf.FloorToInt(timeRemaining % 60);
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+    public void gameOver()
+    {
+        setGamePhase(-1);
     }
 
     public void OnScoreColliderEnter(){
