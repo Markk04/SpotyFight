@@ -1597,7 +1597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed4570952b0f31f4a8f47452e6b920af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  girl: {fileID: 5100297702640908445, guid: 1fb7cf904f9d6444db11c74858eb1bc2, type: 3}
+  girl: {fileID: 4817257850894333558, guid: 2a2ef3cfd9280c44489bccf55676034b, type: 3}
   gamePhase: 0
   lights: []
   ringLight: {fileID: 1443777972}
