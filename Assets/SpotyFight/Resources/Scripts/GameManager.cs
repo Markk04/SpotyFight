@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -23,6 +24,12 @@ public class GameManager : MonoBehaviour
     public GameObject[] lights;
     public GameObject ringLight;
     private GameObject[] spectatorLights;
+    public int PlayerScore;
+    public TextMeshPro PlayerScoreText;
+    public TextMeshPro timerText; // Referencia al componente TextMeshProUGUI
+    public float startTimeInSeconds = 120f; // Tiempo inicial en segundos (ejemplo: 2 minutos)
+    private float timeRemaining;
+    private bool gameHasStared = false;
 
     void Start()
     {
@@ -31,8 +38,8 @@ public class GameManager : MonoBehaviour
         scoreManager = GameObject.FindGameObjectWithTag("ScoreManagement");
         attractionTargets = GameObject.FindGameObjectsWithTag("attractionTarget");
         lights = GameObject.FindGameObjectsWithTag("Light");
-        spectatorLights = GameObject.FindGameObjectsWithTag("spectatorLight");
-        Mezclar(spectatorLights);
+        //spectatorLights = GameObject.FindGameObjectsWithTag("spectatorLight");
+        //Mezclar(spectatorLights);
 
         showGirl("Golpeja al maniqui per començar el joc. Axel maricon");
 
@@ -49,11 +56,28 @@ public class GameManager : MonoBehaviour
         attractionTargetsBlocked = new HashSet<GameObject>();
 
         ringLight.SetActive(false);
-        turnOffSpectatorLights();
+        //turnOffSpectatorLights();
+        
+        updateScore(0);
     }
 
     void Update()
     {
+        if (gameHasStared)
+        {
+          if (timeRemaining > 0)
+                  {
+                      timeRemaining -= Time.deltaTime;
+                      UpdateTimerText();
+                  }
+                  else
+                  {
+                      timeRemaining = 0; // Asegurarse de que no sea negativo
+                      UpdateTimerText();
+                      // Aquí puedes llamar a otra función o hacer algo cuando el tiempo se acabe
+                  }  
+        }
+        
         if (gamePhase > 0)
         {
             // Incrementa el temporizador basado en el tiempo real transcurrido
@@ -99,8 +123,8 @@ public class GameManager : MonoBehaviour
                 if (scoreManager.GetComponent<ScoreManagementScript>().playerScore >= 10)
                 {
                     gamePhase = 2;
-                    spectatorLights[0].SetActive(true);
-                    spectatorLights[1].SetActive(true);
+                    //spectatorLights[0].SetActive(true);
+                    //spectatorLights[1].SetActive(true);
 
                 }
                 break;
@@ -109,8 +133,8 @@ public class GameManager : MonoBehaviour
                 if (scoreManager.GetComponent<ScoreManagementScript>().playerScore >= 20)
                 {
                     gamePhase = 3;
-                    spectatorLights[2].SetActive(true);
-                    spectatorLights[3].SetActive(true);
+                    //spectatorLights[2].SetActive(true);
+                    //spectatorLights[3].SetActive(true);
                 }
                 break;
             case 3:
@@ -118,8 +142,8 @@ public class GameManager : MonoBehaviour
                 if (scoreManager.GetComponent<ScoreManagementScript>().playerScore >= 40)
                 {
                     gamePhase = 4;
-                    spectatorLights[4].SetActive(true);
-                    spectatorLights[5].SetActive(true);
+                    //spectatorLights[4].SetActive(true);
+                    //spectatorLights[5].SetActive(true);
                 }
                 break;
             case 4:
@@ -127,8 +151,8 @@ public class GameManager : MonoBehaviour
                 if (scoreManager.GetComponent<ScoreManagementScript>().playerScore >= 80)
                 {
                     gamePhase = 5;
-                    spectatorLights[6].SetActive(true);
-                    spectatorLights[7].SetActive(true);
+                    //spectatorLights[6].SetActive(true);
+                    //spectatorLights[7].SetActive(true);
                 }
                 break;
             case 5:
@@ -136,8 +160,8 @@ public class GameManager : MonoBehaviour
                 if (scoreManager.GetComponent<ScoreManagementScript>().playerScore >= 160)
                 {
                     gamePhase = 6;
-                    spectatorLights[8].SetActive(true);
-                    spectatorLights[9].SetActive(true);
+                    //spectatorLights[8].SetActive(true);
+                    //spectatorLights[9].SetActive(true);
                 }
                 break;
             case 6:
@@ -154,7 +178,14 @@ public class GameManager : MonoBehaviour
         if (spectatorManager != null)
         {
             spectatorManager.GetComponent<ScoreManagementScript>().SumScore(n);
+            PlayerScore = spectatorManager.GetComponent<ScoreManagementScript>().playerScore;
+            updateScore(PlayerScore);
         }
+    }
+
+    public void updateScore(int num)
+    {
+        PlayerScoreText.text = num.ToString();
     }
 
     public void setGamePhase(int phase)
@@ -183,8 +214,18 @@ public class GameManager : MonoBehaviour
 
     public void startGame(){
         gamePhase = 1;
-        spectatorLights[10].SetActive(true);
-        spectatorLights[11].SetActive(true);
+        //spectatorLights[10].SetActive(true);
+        //spectatorLights[11].SetActive(true);
+        gameHasStared = true;
+        timeRemaining = startTimeInSeconds;
+        UpdateTimerText();
+    }
+    
+    void UpdateTimerText()
+    {
+        int minutes = Mathf.FloorToInt(timeRemaining / 60);
+        int seconds = Mathf.FloorToInt(timeRemaining % 60);
+        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
     public void OnScoreColliderEnter(){
