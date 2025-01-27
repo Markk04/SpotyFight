@@ -4,7 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/SpotyFight/Scenes/XR/XR Spotyfight.unity
+    guid: 359c25c5596de04489958010b83e0738
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 62e82b671309f0b46b028168b3dd9193, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 5991201526c17964383a442c17f3730f, type: 2}

@@ -578,6 +578,63 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1001 &411049314
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1452131876989896543, guid: 6da54f99e8b03f84590cd34e4b5aa306, type: 3}
+      propertyPath: m_Name
+      value: Tarima
+      objectReference: {fileID: 0}
+    - target: {fileID: 8064379084052671604, guid: 6da54f99e8b03f84590cd34e4b5aa306, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8064379084052671604, guid: 6da54f99e8b03f84590cd34e4b5aa306, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8064379084052671604, guid: 6da54f99e8b03f84590cd34e4b5aa306, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8064379084052671604, guid: 6da54f99e8b03f84590cd34e4b5aa306, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8064379084052671604, guid: 6da54f99e8b03f84590cd34e4b5aa306, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8064379084052671604, guid: 6da54f99e8b03f84590cd34e4b5aa306, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8064379084052671604, guid: 6da54f99e8b03f84590cd34e4b5aa306, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8064379084052671604, guid: 6da54f99e8b03f84590cd34e4b5aa306, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8064379084052671604, guid: 6da54f99e8b03f84590cd34e4b5aa306, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8064379084052671604, guid: 6da54f99e8b03f84590cd34e4b5aa306, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6da54f99e8b03f84590cd34e4b5aa306, type: 3}
 --- !u!1 &454143558
 GameObject:
   m_ObjectHideFlags: 0
@@ -1775,7 +1832,7 @@ MonoBehaviour:
   PlayerScore: 0
   PlayerScoreText: {fileID: 739491414}
   timerText: {fileID: 1490531356}
-  maniquiRagdoll: {fileID: 6600275918007133952, guid: d729385a70673494cbca8b8f87fbc6f0, type: 3}
+  tarima: {fileID: 1452131876989896543, guid: 6da54f99e8b03f84590cd34e4b5aa306, type: 3}
 --- !u!1 &1443777972 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6823989850770325104, guid: f208d80ab06766c428d85226d84c01af, type: 3}
@@ -13219,3 +13276,4 @@ SceneRoots:
   - {fileID: 2024530091}
   - {fileID: 739491416}
   - {fileID: 1490531358}
+  - {fileID: 411049314}

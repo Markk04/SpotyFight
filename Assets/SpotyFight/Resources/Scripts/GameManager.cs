@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     private bool gameHasStared = false;
     private GameObject[] maniquisQueSePegan;
     private GameObject[] maniquisQueSeCorren;
+    public GameObject tarima;
 
     void Start()
     {
@@ -173,6 +174,11 @@ public class GameManager : MonoBehaviour
                 break;
             case -1:
                 // Fin del juego
+                Instantiate(tarima, gameObject.transform.position, Quaternion.identity);
+                setGamePhase(-2);
+                break;
+            case -2:
+                //Stendby me la suda
                 break;
         }
     }
