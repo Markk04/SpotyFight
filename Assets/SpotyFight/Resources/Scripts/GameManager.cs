@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     public int PlayerScore;
     public TextMeshPro PlayerScoreText;
     public TextMeshPro timerText; // Referencia al componente TextMeshProUGUI
-    private float startTimeInSeconds = 120f; // Tiempo inicial en segundos (ejemplo: 2 minutos)
+    public float startTimeInSeconds; // Tiempo inicial en segundos (ejemplo: 2 minutos)
     private float timeRemaining;
     private bool gameHasStared = false;
     private GameObject[] maniquisQueSePegan;
@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
                       UpdateTimerText();
                       // Game Over 
                       gameOver();
-
+                      gameHasStared = false;
                   }  
         }
         
@@ -175,7 +175,7 @@ public class GameManager : MonoBehaviour
             case -1:
                 // Fin del juego
                 Instantiate(tarima, gameObject.transform.position, Quaternion.identity);
-                setGamePhase(-2);
+                gamePhase = -2;
                 break;
             case -2:
                 //Stendby me la suda

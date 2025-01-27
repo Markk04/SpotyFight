@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LeverScript : MonoBehaviour
+public class RestartScript : MonoBehaviour
 {
-
-
 
     // Start is called before the first frame update
     void Start()
@@ -19,8 +17,7 @@ public class LeverScript : MonoBehaviour
     {
         
     }
-
-    void ReloadLevel()
+    public void ReloadLevel()
     {
         Debug.Log("Button Pressed");
         SceneManager.LoadScene("XR Spotyfight");

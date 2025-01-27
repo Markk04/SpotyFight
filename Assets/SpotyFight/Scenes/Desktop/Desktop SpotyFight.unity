@@ -786,63 +786,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -16.407, y: -0.677, z: 10.116}
---- !u!1001 &273835158
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1452131876989896543, guid: 6da54f99e8b03f84590cd34e4b5aa306, type: 3}
-      propertyPath: m_Name
-      value: Tarima
-      objectReference: {fileID: 0}
-    - target: {fileID: 8064379084052671604, guid: 6da54f99e8b03f84590cd34e4b5aa306, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8064379084052671604, guid: 6da54f99e8b03f84590cd34e4b5aa306, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8064379084052671604, guid: 6da54f99e8b03f84590cd34e4b5aa306, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8064379084052671604, guid: 6da54f99e8b03f84590cd34e4b5aa306, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8064379084052671604, guid: 6da54f99e8b03f84590cd34e4b5aa306, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8064379084052671604, guid: 6da54f99e8b03f84590cd34e4b5aa306, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8064379084052671604, guid: 6da54f99e8b03f84590cd34e4b5aa306, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8064379084052671604, guid: 6da54f99e8b03f84590cd34e4b5aa306, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8064379084052671604, guid: 6da54f99e8b03f84590cd34e4b5aa306, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8064379084052671604, guid: 6da54f99e8b03f84590cd34e4b5aa306, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6da54f99e8b03f84590cd34e4b5aa306, type: 3}
 --- !u!1001 &291538805
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1659,7 +1602,8 @@ MonoBehaviour:
   PlayerScore: 0
   PlayerScoreText: {fileID: 141556846}
   timerText: {fileID: 2050071921}
-  tarima: {fileID: 1452131876989896543, guid: 6da54f99e8b03f84590cd34e4b5aa306, type: 3}
+  startTimeInSeconds: 15
+  tarima: {fileID: 3951693177948839009, guid: 6da54f99e8b03f84590cd34e4b5aa306, type: 3}
 --- !u!1001 &1296461739
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7359,4 +7303,3 @@ SceneRoots:
   - {fileID: 1296461739}
   - {fileID: 490824519}
   - {fileID: 1402656544}
-  - {fileID: 273835158}
