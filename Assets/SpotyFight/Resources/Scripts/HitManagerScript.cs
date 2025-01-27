@@ -14,6 +14,8 @@ public class HitScript : MonoBehaviour
     public GameObject maniquiRagdoll;
     public GameObject gm;
     private GameObject target;
+    private AudioSource audioSource;
+    private AudioClip[] audioList;
     
 
     // Lista de ids
@@ -24,6 +26,8 @@ public class HitScript : MonoBehaviour
     {
         // Obtener el componente Renderer del espectador
         gm = GameObject.FindGameObjectWithTag("GameManager");
+        audioSource = gm.GetComponent<AudioSource>();
+        audioList = gm.GetComponent<GameManager>().GetAudioList();
         SkinnedMeshRenderer skinnedRenderer = gameObject.GetComponent<SkinnedMeshRenderer>();
         boxCollider = GetComponentInParent<BoxCollider>();
         mannequinRb = GetComponentInParent<Rigidbody>();
@@ -166,6 +170,9 @@ public class HitScript : MonoBehaviour
         if (idsToHit.Count > 0 && id == idsToHit[0])
         {
             idsToHit.RemoveAt(0); // Elimina la posición 0
+            int randomNum = Random.Range(1, audioList.Length);
+            if(randomNum == 0){randomNum = 1;}
+            audioSource.PlayOneShot(audioList[randomNum]);
             return true;
         }else{
             return false;

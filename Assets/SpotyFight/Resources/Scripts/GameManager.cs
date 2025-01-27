@@ -8,6 +8,8 @@ using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
+    private AudioSource audioSource;
+    public AudioClip[] AudioList;
     private GameObject spectatorManager;
     private GameObject enemyGenerator;
     private GameObject scoreManager;
@@ -41,6 +43,7 @@ public class GameManager : MonoBehaviour
         scoreManager = GameObject.FindGameObjectWithTag("ScoreManagement");
         attractionTargets = GameObject.FindGameObjectsWithTag("attractionTarget");
         lights = GameObject.FindGameObjectsWithTag("Light");
+        audioSource = GetComponent<AudioSource>();
         //spectatorLights = GameObject.FindGameObjectsWithTag("spectatorLight");
         //Mezclar(spectatorLights);
 
@@ -175,6 +178,7 @@ public class GameManager : MonoBehaviour
             case -1:
                 // Fin del juego
                 Instantiate(tarima, gameObject.transform.position, Quaternion.identity);
+                audioSource.PlayOneShot(AudioList[0]);
                 gamePhase = -2;
                 break;
             case -2:
@@ -224,6 +228,7 @@ public class GameManager : MonoBehaviour
 
     public void startGame(){
         gamePhase = 1;
+        audioSource.PlayOneShot(AudioList[0]);
         //spectatorLights[10].SetActive(true);
         //spectatorLights[11].SetActive(true);
         gameHasStared = true;
@@ -316,5 +321,8 @@ public class GameManager : MonoBehaviour
                 array[randomIndex] = temp;
             }
         }
+    public AudioClip[] GetAudioList(){
+        return AudioList;
+    }
 
 }
