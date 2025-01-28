@@ -43609,7 +43609,7 @@ MonoBehaviour:
   PlayerScore: 0
   PlayerScoreText: {fileID: 603343091}
   timerText: {fileID: 780847325}
-  startTimeInSeconds: 120
+  startTimeInSeconds: 60
   tarima: {fileID: 3951693177948839009, guid: 6da54f99e8b03f84590cd34e4b5aa306, type: 3}
 --- !u!82 &1745329572
 AudioSource:

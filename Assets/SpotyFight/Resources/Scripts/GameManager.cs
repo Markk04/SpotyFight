@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     private GameObject[] maniquisQueSePegan;
     private GameObject[] maniquisQueSeCorren;
     public GameObject tarima;
+    public AudioClip ringSound;
 
     void Start()
     {
@@ -47,7 +48,7 @@ public class GameManager : MonoBehaviour
         //spectatorLights = GameObject.FindGameObjectsWithTag("spectatorLight");
         //Mezclar(spectatorLights);
 
-        showGirl("Golpeja al maniqui per començar el joc. Axel maricon");
+        showGirl("Golpeja al maniqui per començar el joc.");
 
         if (spectatorManager == null || enemyGenerator == null || scoreManager == null)
         {
@@ -178,7 +179,7 @@ public class GameManager : MonoBehaviour
             case -1:
                 // Fin del juego
                 Instantiate(tarima, gameObject.transform.position, Quaternion.identity);
-                audioSource.PlayOneShot(AudioList[0]);
+                audioSource.PlayOneShot(ringSound);
                 gamePhase = -2;
                 break;
             case -2:
@@ -228,7 +229,7 @@ public class GameManager : MonoBehaviour
 
     public void startGame(){
         gamePhase = 1;
-        audioSource.PlayOneShot(AudioList[0]);
+        audioSource.PlayOneShot(ringSound);
         //spectatorLights[10].SetActive(true);
         //spectatorLights[11].SetActive(true);
         gameHasStared = true;
@@ -264,7 +265,7 @@ public class GameManager : MonoBehaviour
         maniquisQueSeCorren = GameObject.FindGameObjectsWithTag("ManiquisQueSeCorren");
         foreach (GameObject maniquiCorre in maniquisQueSeCorren)
         {
-            maniquiCorre.GetComponent<HitScript>().passarARagdoll();
+            maniquiCorre.GetComponent<ManiquiRunScript>().passarARagdoll();
         }
     }
 
@@ -275,7 +276,7 @@ public class GameManager : MonoBehaviour
 
     public void showGirl(String msg){
         girlPrefab = Instantiate(girl, transform.position, transform.rotation);
-        girlPrefab.GetComponent<girlSquirt>().setText("TU RECONTRAPUTISSIMA MADRE");
+        girlPrefab.GetComponent<girlSquirt>().setText(msg);
     }
 
     public void hideGirl(){
