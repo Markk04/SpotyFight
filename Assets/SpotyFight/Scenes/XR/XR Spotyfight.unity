@@ -43597,7 +43597,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AudioList:
-  - {fileID: 8300000, guid: 16f62ccd926b34c4eb306c19738e2fa3, type: 3}
   - {fileID: 8300000, guid: 0af2aaaea24cfd44196f0c3245f00817, type: 3}
   - {fileID: 8300000, guid: 4a470c7a83d058c4b8cb28b715ed77e0, type: 3}
   - {fileID: 8300000, guid: 16f62ccd926b34c4eb306c19738e2fa3, type: 3}
@@ -43611,6 +43610,7 @@ MonoBehaviour:
   timerText: {fileID: 780847325}
   startTimeInSeconds: 60
   tarima: {fileID: 3951693177948839009, guid: 6da54f99e8b03f84590cd34e4b5aa306, type: 3}
+  ringSound: {fileID: 8300000, guid: 16f62ccd926b34c4eb306c19738e2fa3, type: 3}
 --- !u!82 &1745329572
 AudioSource:
   m_ObjectHideFlags: 0
